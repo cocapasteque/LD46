@@ -1,14 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Doozy.Engine.UI;
+using Newtonsoft.Json;
+using Sirenix.OdinInspector;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : SerializedMonoBehaviour
 {
-    public void StartGame()
+    public string[] levelNames;
+
+    public GameObject unlockedLevel;
+    public GameObject lockedLevel;
+    public Transform levelContainers;
+    
+    private Dictionary<string, bool> levels;
+    
+    void Start()
     {
-        GameManager.Instance.LoadLevel("Game");
+        InitializeLevels();
+        CheckUnlockState();
+        InstantiateLevelButtons();
     }
 
     public void Exit()
@@ -18,5 +32,37 @@ public class MainMenu : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    private void InstantiateLevelButtons()
+    {
+        foreach (var level in levels)
+        {
+            Debug.Log("Creating button for " + level.Key);
+            var btn = Instantiate(level.Value ? unlockedLevel : lockedLevel, levelContainers);
+            btn.GetComponentInChildren<TMP_Text>().text = level.Value ? level.Key : "Locked";
+        }
+    }
+    
+    private void CheckUnlockState()
+    {
+        var pref = PlayerPrefs.GetString("unlocked_levels", "['Game']");
+        string[] unlocked = JsonConvert.DeserializeObject<string[]>(pref);
+
+        foreach (var level in unlocked)
+        {
+            // unlocking level in dictionary if in player prefs.
+            if (levels.ContainsKey(level))
+                levels[level] = true;
+        }
+    }
+
+    private void InitializeLevels()
+    {
+        levels = new Dictionary<string, bool>();
+        foreach (var level in levelNames)
+        {
+            levels.Add(level, false);
+        }
     }
 }

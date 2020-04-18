@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -38,8 +39,7 @@ public class GameManager : Singleton<GameManager>
 
     public Texture2D addFanIcon;
     public Texture2D noMoreFanIcon;
-
-
+    
     public GameObject fanPrefab;
     public float pressThreshold = 0.3f;
     
