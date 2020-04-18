@@ -18,7 +18,9 @@ MonoBehaviour:
   - Example
   - General
   - Main Menu
+  - Game Overlay
   Categories:
   - {fileID: 11400000, guid: 40f9e81ff80114a47a3721228ba749ed, type: 2}
   - {fileID: 11400000, guid: b0693543e90860342850ae61046d5b3a, type: 2}
   - {fileID: 11400000, guid: 8e4f491eb71b2b34c94b719a58b3a068, type: 2}
+  - {fileID: 11400000, guid: 2dd654da093c8644bbb0c7868b49c7ee, type: 2}

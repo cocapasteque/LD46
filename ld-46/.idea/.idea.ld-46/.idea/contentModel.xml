@@ -863,19 +863,10 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Fan.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="GameOverlay.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
-          <e p="OverScope kek" t="Include">
-            <e p="Editor" t="Include">
-              <e p="SaveLevelButton.cs" t="Include" />
-            </e>
-            <e p="Level" t="Include">
-              <e p="Cell.cs" t="Include" />
-              <e p="CellScriptable.cs" t="Include" />
-              <e p="Grid.cs" t="Include" />
-              <e p="Level.cs" t="Include" />
-              <e p="LevelLoader.cs" t="Include" />
-            </e>
-          </e>
+          <e p="Obstacle.cs" t="Include" />
           <e p="Player.cs" t="Include" />
           <e p="Utilities" t="Include">
             <e p="Singleton.cs" t="Include" />
