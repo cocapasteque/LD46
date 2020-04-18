@@ -18,8 +18,8 @@ public class Player : MonoBehaviour
 
         m_startingPosition = transform.position;
         
-        GameManager.Instance.OnPlayerDied += Killed;
-        GameManager.Instance.OnLevelRun += Started;
+        GameManager.Instance.OnPlayerDied.AddListener(Killed);
+        GameManager.Instance.OnLevelRun.AddListener(Started);
     }
 
     // Update is called once per frame
