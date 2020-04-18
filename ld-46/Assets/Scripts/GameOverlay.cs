@@ -40,6 +40,7 @@ public class GameOverlay : Singleton<GameOverlay>
     public void StartGame()
     {
         GameManager.Instance.StartLevel();
+        level.DeselectAllFans();
     }
     void SetPrepare()
     {

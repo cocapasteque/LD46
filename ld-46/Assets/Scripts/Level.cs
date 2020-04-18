@@ -32,56 +32,59 @@ public class Level : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (GameManager.Instance.State != GameState.Running)
         {
-            var hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0);
-
-            // check if we clicked a scene object (fan/player/sawblade) 
-            if (hit)
-            {
-                SceneObjectClicked(hit);
-                if (isTutorial) tManager.Event("FanClicked");
-            }
-            // check if we want to place a fan.
-            else if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                if (isTutorial && !tManager.canPlaceFan) return;
-                
-                PlaceFan(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                if (isTutorial) tManager.Event("FanPlaced");
-            }
-        }
-
-        // If we hold left click (move)
-        if (Input.GetMouseButton(0))
-        {
-            // If we already grabbed a fan
-            if (grabbedFan != null)
-            {
-                grabbedFan.Move((Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition) + dragOffset);
-                if (isTutorial) tManager.Event("FanMoved");
-            }
-            else
+            if (Input.GetMouseButtonDown(0))
             {
                 var hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0);
-                // check if we clicked a scene object (fan/player/saw blade) 
+
+                // check if we clicked a scene object (fan/player/sawblade) 
                 if (hit)
                 {
-                    if (currentPressTime >= GameManager.Instance.pressThreshold)
-                    {
-                        SceneObjectPressed(hit, mainCamera.ScreenToWorldPoint(Input.mousePosition));
-                    }
+                    SceneObjectClicked(hit);
+                    if (isTutorial) tManager.Event("FanClicked");
+                }
+                // check if we want to place a fan.
+                else if (!EventSystem.current.IsPointerOverGameObject())
+                {
+                    if (isTutorial && !tManager.canPlaceFan) return;
 
-                    currentPressTime += Time.deltaTime;
+                    PlaceFan(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                    if (isTutorial) tManager.Event("FanPlaced");
                 }
             }
-        }
-        
-        // Reset press time
-        if (Input.GetMouseButtonUp(0))
-        {
-            currentPressTime = 0;
-            grabbedFan = null;
+
+            // If we hold left click (move)
+            if (Input.GetMouseButton(0))
+            {
+                // If we already grabbed a fan
+                if (grabbedFan != null)
+                {
+                    grabbedFan.Move((Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition) + dragOffset);
+                    if (isTutorial) tManager.Event("FanMoved");
+                }
+                else
+                {
+                    var hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0);
+                    // check if we clicked a scene object (fan/player/saw blade) 
+                    if (hit)
+                    {
+                        if (currentPressTime >= GameManager.Instance.pressThreshold)
+                        {
+                            SceneObjectPressed(hit, mainCamera.ScreenToWorldPoint(Input.mousePosition));
+                        }
+
+                        currentPressTime += Time.deltaTime;
+                    }
+                }
+            }
+
+            // Reset press time
+            if (Input.GetMouseButtonUp(0))
+            {
+                currentPressTime = 0;
+                grabbedFan = null;
+            }
         }
     }
     public void DeselectAllFans()
