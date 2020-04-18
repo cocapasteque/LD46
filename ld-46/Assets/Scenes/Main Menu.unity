@@ -4139,7 +4139,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -455, y: -335}
+  m_AnchoredPosition: {x: -382, y: -274}
   m_SizeDelta: {x: -1278.5, y: -826.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &282981199
@@ -4171,7 +4171,7 @@ MonoBehaviour:
   AutoHideAfterShowDelay: 3
   AutoSelectButtonAfterShow: 0
   BehaviorAtStart: 1
-  CustomStartAnchoredPosition: {x: -455, y: -335, z: 0}
+  CustomStartAnchoredPosition: {x: -382, y: -274, z: 0}
   DeselectAnyButtonSelectedOnHide: 0
   DeselectAnyButtonSelectedOnShow: 0
   DisableCanvasWhenHidden: 1
@@ -16203,7 +16203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -382, y: 76}
+  m_AnchoredPosition: {x: -382, y: 51}
   m_SizeDelta: {x: -1278.5, y: -826.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1071453012
@@ -16235,7 +16235,7 @@ MonoBehaviour:
   AutoHideAfterShowDelay: 3
   AutoSelectButtonAfterShow: 0
   BehaviorAtStart: 1
-  CustomStartAnchoredPosition: {x: -382, y: 76, z: 0}
+  CustomStartAnchoredPosition: {x: -382, y: 51, z: 0}
   DeselectAnyButtonSelectedOnHide: 0
   DeselectAnyButtonSelectedOnShow: 0
   DisableCanvasWhenHidden: 1
@@ -22349,7 +22349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 348, y: 23}
+  m_AnchoredPosition: {x: 378, y: 51}
   m_SizeDelta: {x: -1278.5, y: -826.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1864097898
@@ -22381,7 +22381,7 @@ MonoBehaviour:
   AutoHideAfterShowDelay: 3
   AutoSelectButtonAfterShow: 0
   BehaviorAtStart: 1
-  CustomStartAnchoredPosition: {x: 348, y: 23, z: 0}
+  CustomStartAnchoredPosition: {x: 378, y: 51, z: 0}
   DeselectAnyButtonSelectedOnHide: 0
   DeselectAnyButtonSelectedOnShow: 0
   DisableCanvasWhenHidden: 1
