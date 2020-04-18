@@ -10,14 +10,25 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D m_rb;
     private Vector3 m_startingPosition;
-    
+    private Quaternion m_startingRotation;
+
+    private Transform basket;
+    private Vector3 basket_startingPosition;
+    private Quaternion basket_startingRotation;
+
     private void Awake()
     {
         m_rb = GetComponent<Rigidbody2D>();
         m_rb.isKinematic = true;
 
+
         m_startingPosition = transform.position;
-        
+        m_startingRotation = transform.rotation;
+
+        basket = transform.GetChild(0).GetChild(1);
+        basket_startingPosition = basket.transform.position;
+        basket_startingRotation = basket.transform.rotation;
+
         GameManager.Instance.OnPlayerDied.AddListener(Killed);
         GameManager.Instance.OnLevelRun.AddListener(Started);
     }
@@ -41,7 +52,15 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Player killed");
         m_rb.isKinematic = true;
+
+        m_rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         m_rb.velocity = Vector3.zero;
         transform.position = m_startingPosition;
+        transform.rotation = m_startingRotation;
+
+        basket.transform.position = basket_startingPosition;
+        basket.transform.rotation = basket_startingRotation;
+
+        m_rb.constraints = RigidbodyConstraints2D.None;
     }
 }
