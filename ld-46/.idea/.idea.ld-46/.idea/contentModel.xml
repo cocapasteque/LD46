@@ -865,6 +865,7 @@
           <e p="Fan.cs" t="Include" />
           <e p="FanSelector.cs" t="Include" />
           <e p="FinishLine.cs" t="Include" />
+          <e p="Flamethrower.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="GameOverlay.cs" t="Include" />
           <e p="Level.cs" t="Include" />
