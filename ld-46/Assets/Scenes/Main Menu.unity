@@ -12556,7 +12556,7 @@ MonoBehaviour:
       m_Calls: []
   addFanIcon: {fileID: 2800000, guid: 787cbcefdda078b468f8a52a3dd5271b, type: 3}
   noMoreFanIcon: {fileID: 2800000, guid: f7a5c2bfdb0fd4e4e8859e843d6963ce, type: 3}
-  fanPrefab: {fileID: 1147072154864648411, guid: 9ae3e1457eb97674cad1bf223e7db523,
+  fanPrefab: {fileID: 1147072154864648411, guid: fc80c56521284764fb5a648f84d86f50,
     type: 3}
   pressThreshold: 0.05
 --- !u!4 &1647366061
