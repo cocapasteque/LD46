@@ -55,7 +55,7 @@ public class MainMenu : SerializedMonoBehaviour
 
     private void CheckUnlockState()
     {
-        var pref = PlayerPrefs.GetString("unlocked_levels", "['Game']");
+        var pref = PlayerPrefs.GetString("unlocked_levels", "['Tutorial','Game']");
         string[] unlocked = JsonConvert.DeserializeObject<string[]>(pref);
 
         foreach (var level in unlocked)
