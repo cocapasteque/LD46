@@ -1,9 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Doozy.Engine.UI;
-using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class TutorialManager : MonoBehaviour
 {
