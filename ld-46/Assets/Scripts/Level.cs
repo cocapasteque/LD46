@@ -12,8 +12,21 @@ public class Level : MonoBehaviour
     public List<FanSelector> fans = new List<FanSelector>();
 
     private float currentPressTime = 0f;
+
     private FanSelector grabbedFan;
     
+    public bool isTutorial = false;
+    private TutorialManager tManager;
+
+    private void Start()
+    {
+        if (isTutorial)
+        {
+            tManager = FindObjectOfType<TutorialManager>();
+            tManager.level = this;
+        }
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -24,11 +37,13 @@ public class Level : MonoBehaviour
             if (hit)
             {
                 SceneObjectClicked(hit);
+                if (isTutorial) tManager.Event("FanClicked");
             }
             // check if we want to place a fan.
             else if (!EventSystem.current.IsPointerOverGameObject())
             {
                 PlaceFan(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                if (isTutorial) tManager.Event("FanPlaced");
             }
         }
 
@@ -39,6 +54,7 @@ public class Level : MonoBehaviour
             if (grabbedFan != null)
             {
                 grabbedFan.Move(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                if (isTutorial) tManager.Event("FanMoved");
             }
             else
             {
@@ -65,6 +81,7 @@ public class Level : MonoBehaviour
                 if (currentPressTime >= GameManager.Instance.pressThreshold)
                 {
                     selectedFan.Rotate(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                    if(isTutorial) tManager.Event("FanRotated");
                 }
 
                 currentPressTime += Time.deltaTime;
@@ -78,7 +95,7 @@ public class Level : MonoBehaviour
             grabbedFan = null;
         }
     }
-    private void DeselectAllFans()
+    public void DeselectAllFans()
     {
         fans.ForEach(f => { f.Deselect(); });
     }
@@ -120,7 +137,7 @@ public class Level : MonoBehaviour
         var obj = Instantiate(GameManager.Instance.fanPrefab, pos, Quaternion.identity);
         var fan = obj.GetComponentInChildren<FanSelector>();
         fans.Add(fan);
-        fan.Select();
+        if(!isTutorial) fan.Select();
         fan.level = this;
 
         return fan;
