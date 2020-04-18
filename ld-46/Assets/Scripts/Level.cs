@@ -9,10 +9,10 @@ public class Level : MonoBehaviour
     public string levelName;
     public int availableFans = 5;
 
-    public List<Fan> fans = new List<Fan>();
+    public List<FanSelector> fans = new List<FanSelector>();
 
     private float currentPressTime = 0f;
-    private Fan grabbedFan;
+    private FanSelector grabbedFan;
     
     private void Update()
     {
@@ -86,7 +86,7 @@ public class Level : MonoBehaviour
     private void SceneObjectClicked(RaycastHit2D hit)
     {
         Debug.Log($"Over Scene Object {hit.collider.name}");
-        var fan = hit.transform.GetComponent<Fan>();
+        var fan = hit.transform.GetComponent<FanSelector>();
         if (fan != null)
         {
             if (fan.selected)
@@ -103,7 +103,7 @@ public class Level : MonoBehaviour
 
     private void SceneObjectPressed(RaycastHit2D hit)
     {
-        var fan = hit.transform.GetComponent<Fan>();
+        var fan = hit.transform.GetComponent<FanSelector>();
         if (fan != null)
         {
             if (!fan.selected) fan.Select();
@@ -111,14 +111,14 @@ public class Level : MonoBehaviour
         }
     }
 
-    private Fan PlaceFan(Vector2 pos)
+    private FanSelector PlaceFan(Vector2 pos)
     {
         if (availableFans <= fans.Count) return null;
 
         DeselectAllFans();
 
         var obj = Instantiate(GameManager.Instance.fanPrefab, pos, Quaternion.identity);
-        var fan = obj.GetComponent<Fan>();
+        var fan = obj.GetComponentInChildren<FanSelector>();
         fans.Add(fan);
         fan.Select();
         fan.level = this;
@@ -126,9 +126,9 @@ public class Level : MonoBehaviour
         return fan;
     }
 
-    public void RemoveFan(Fan fan)
+    public void RemoveFan(FanSelector fan)
     {
         fans.Remove(fan);
-        Destroy(fan.gameObject);
+        Destroy(fan.transform.parent.gameObject);
     }
 }

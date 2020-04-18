@@ -62,5 +62,5 @@ public class Player : MonoBehaviour
         basket.transform.rotation = basket_startingRotation;
 
         m_rb.constraints = RigidbodyConstraints2D.None;
-    }
+    }   
 }
