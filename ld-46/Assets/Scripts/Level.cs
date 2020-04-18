@@ -15,33 +15,55 @@ public class Level : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0);
+
+            // check if we clicked a scene object (fan/player/sawblade) 
             if (hit)
             {
-                Debug.Log($"Over Scene Object {hit.collider.name}");
-                if (hit.transform.GetComponent<Fan>() != null)
-                {
-                    hit.transform.GetComponent<Fan>().Select();
-                }
+                SceneObjectClicked(hit);
             }
+            // check if we want to place a fan.
             else if (!EventSystem.current.IsPointerOverGameObject())
             {
+                PlaceFan(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            }
+        }
+    }
+
+
+    private void DeselectAllFans()
+    {
+        fans.ForEach(f => { f.Deselect(); });
+    }
+
+    private void SceneObjectClicked(RaycastHit2D hit)
+    {
+        Debug.Log($"Over Scene Object {hit.collider.name}");
+        var fan = hit.transform.GetComponent<Fan>();
+        if (fan != null)
+        {
+            if (fan.selected)
+            {
+                fan.Deselect();
+            }
+            else
+            {
                 DeselectAllFans();
-                var fan = PlaceFan(Camera.main.ScreenToWorldPoint(Input.mousePosition));
                 fan.Select();
             }
         }
     }
 
-    void DeselectAllFans()
+    private Fan PlaceFan(Vector2 pos)
     {
-        fans.ForEach(f => { f.Deselect(); });
-    }
+        if (availableFans <= fans.Count) return null;
+        
+        DeselectAllFans();
 
-    public Fan PlaceFan(Vector2 pos)
-    {
         var obj = Instantiate(GameManager.Instance.fanPrefab, pos, Quaternion.identity);
         var fan = obj.GetComponent<Fan>();
         fans.Add(fan);
+        fan.Select();
+
         return fan;
     }
 }
