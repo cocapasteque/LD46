@@ -42,6 +42,8 @@ public class Level : MonoBehaviour
             // check if we want to place a fan.
             else if (!EventSystem.current.IsPointerOverGameObject())
             {
+                if (isTutorial && !tManager.canPlaceFan) return;
+                
                 PlaceFan(Camera.main.ScreenToWorldPoint(Input.mousePosition));
                 if (isTutorial) tManager.Event("FanPlaced");
             }

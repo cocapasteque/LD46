@@ -14,6 +14,7 @@ public class TutorialManager : MonoBehaviour
     public Canvas canvas;
 
     public Level level;
+    public bool canPlaceFan;
     
     public Vector3 canvasMiddle
     {
@@ -30,6 +31,10 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         DisplayStep(m_currentIndex);
+        GameManager.Instance.OnLevelRun.AddListener(() =>
+        {
+            Event("StartPressed");
+        });
     }
     
     void Update()
@@ -72,5 +77,10 @@ public class TutorialManager : MonoBehaviour
     {
         steps[m_currentIndex].onStepEnded?.Invoke();
         DisplayStep(++m_currentIndex);
+    }
+
+    public void CanPlaceFan(bool value)
+    {
+        canPlaceFan = value;
     }
 }
