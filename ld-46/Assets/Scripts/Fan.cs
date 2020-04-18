@@ -8,15 +8,33 @@ using UnityEngine.UI;
 
 public class Fan : MonoBehaviour
 {
-    public float force;
+    public FanSelector Selector;
+
+    public float maxForce;
     private BoxCollider2D coll;
+
+    private float currentForce;
 
     private void Start()
     {
+        currentForce = 0.5f;
         coll = GetComponent<BoxCollider2D>();
 //        tooltipView.GetComponentInParent<UICanvas>().CanvasName = Guid.NewGuid().ToString();
 //        GetComponent<PointEffector2D>().forceMagnitude = forceSlider.value * 50;
-    }   
+    }
+
+    public void Select()
+    {
+        GameOverlay.Instance.ForceSlider.normalizedValue = currentForce;
+    }
+
+    private void Update()
+    {
+        if (Selector.selected)
+        {
+            currentForce = GameOverlay.Instance.ForceSlider.normalizedValue;
+        }
+    }
 
     public void SliderValueChanged(float val)
     {
@@ -33,7 +51,7 @@ public class Fan : MonoBehaviour
             float b = coll.size.x / 2f;
             //Magic math
             float overlap = Mathf.Clamp01((b + r - d) / (2f * r));
-            collision.attachedRigidbody.AddForce(transform.up * force * overlap * (1f / Vector2.Distance(collision.transform.position, transform.position)));
+            collision.attachedRigidbody.AddForce(transform.up * currentForce * maxForce * overlap * (1f / Vector2.Distance(collision.transform.position, transform.position)));
         }
     }
 }
