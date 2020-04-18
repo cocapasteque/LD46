@@ -17,9 +17,12 @@ public class Level : MonoBehaviour
     
     public bool isTutorial = false;
     private TutorialManager tManager;
+    private Camera mainCamera;
+    private Vector2 dragOffset;
 
     private void Start()
     {
+        mainCamera = Camera.main;
         if (isTutorial)
         {
             tManager = FindObjectOfType<TutorialManager>();
@@ -31,7 +34,7 @@ public class Level : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0);
+            var hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0);
 
             // check if we clicked a scene object (fan/player/sawblade) 
             if (hit)
@@ -55,38 +58,22 @@ public class Level : MonoBehaviour
             // If we already grabbed a fan
             if (grabbedFan != null)
             {
-                grabbedFan.Move(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                grabbedFan.Move((Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition) + dragOffset);
                 if (isTutorial) tManager.Event("FanMoved");
             }
             else
             {
-                var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0);
-                // check if we clicked a scene object (fan/player/sawblade) 
+                var hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0);
+                // check if we clicked a scene object (fan/player/saw blade) 
                 if (hit)
                 {
                     if (currentPressTime >= GameManager.Instance.pressThreshold)
                     {
-                        SceneObjectPressed(hit);
+                        SceneObjectPressed(hit, mainCamera.ScreenToWorldPoint(Input.mousePosition));
                     }
 
                     currentPressTime += Time.deltaTime;
                 }
-            }
-        }
-
-        // If we hold right click (rotate)
-        if (Input.GetMouseButton(1))
-        {
-            var selectedFan = fans.SingleOrDefault(x => x.selected);
-            if (selectedFan != null)
-            {
-                if (currentPressTime >= GameManager.Instance.pressThreshold)
-                {
-                    selectedFan.Rotate(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                    if(isTutorial) tManager.Event("FanRotated");
-                }
-
-                currentPressTime += Time.deltaTime;
             }
         }
         
@@ -120,12 +107,13 @@ public class Level : MonoBehaviour
         }
     }
 
-    private void SceneObjectPressed(RaycastHit2D hit)
+    private void SceneObjectPressed(RaycastHit2D hit, Vector2 hitPosition)
     {
         var fan = hit.transform.GetComponent<FanSelector>();
         if (fan != null)
         {
             if (!fan.selected) fan.Select();
+            dragOffset = (Vector2)fan.transform.parent.position - hitPosition;
             grabbedFan = fan;
         }
     }

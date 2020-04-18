@@ -54,21 +54,6 @@ public class FanSelector : MonoBehaviour
         transform.parent.position = position;
     }
 
-    public void Rotate(Vector2 position)
-    {
-        // Get Angle in Radians
-        float rad = Mathf.Atan2(position.y - transform.parent.position.y, position.x - transform.parent.position.x);
-        // Get Angle in Degrees
-        float deg = (180 / Mathf.PI) * rad;
-        // Rotate Object
-        transform.parent.rotation = Quaternion.Euler(0, 0, deg);
-    }
-
-    public void Rotate2()
-    {
-        
-    }
-
     public void Remove()
     {
         level.RemoveFan(this);

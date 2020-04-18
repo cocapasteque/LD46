@@ -34,7 +34,7 @@ public class GameOverlay : Singleton<GameOverlay>
     private void Update()
     {
         ForcePercentage.text = (ForceSlider.normalizedValue * 100).ToString("F0") + "%";
-        RotationAngle.text = (RotationSlider.normalizedValue * 360).ToString("F0");
+        RotationAngle.text = (RotationSlider.normalizedValue * 360).ToString("F0") + "°";
     }
 
     public void StartGame()

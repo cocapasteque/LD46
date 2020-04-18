@@ -17,7 +17,7 @@ public class Fan : MonoBehaviour
 
     private void Start()
     {
-        currentForce = 0.5f;
+        GameOverlay.Instance.ForceSlider.normalizedValue = 0.5f;
         coll = GetComponent<BoxCollider2D>();
 //        tooltipView.GetComponentInParent<UICanvas>().CanvasName = Guid.NewGuid().ToString();
 //        GetComponent<PointEffector2D>().forceMagnitude = forceSlider.value * 50;
