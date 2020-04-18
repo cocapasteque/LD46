@@ -44,5 +44,19 @@ public class Fan : MonoBehaviour
     {
         level.RemoveFan(this);
     }
-    
+
+    public void Move(Vector2 position)
+    {
+        transform.position = position;
+    }
+
+    public void Rotate(Vector2 position)
+    {
+        // Get Angle in Radians
+        float rad = Mathf.Atan2(position.y - transform.position.y, position.x - transform.position.x);
+        // Get Angle in Degrees
+        float deg = (180 / Mathf.PI) * rad;
+        // Rotate Object
+        transform.rotation = Quaternion.Euler(0, 0, deg);
+    }
 }

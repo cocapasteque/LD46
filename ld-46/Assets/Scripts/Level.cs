@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,6 +11,9 @@ public class Level : MonoBehaviour
 
     public List<Fan> fans = new List<Fan>();
 
+    private float currentPressTime = 0f;
+    private Fan grabbedFan;
+    
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -27,8 +31,53 @@ public class Level : MonoBehaviour
                 PlaceFan(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             }
         }
+
+        // If we hold left click (move)
+        if (Input.GetMouseButton(0))
+        {
+            // If we already grabbed a fan
+            if (grabbedFan != null)
+            {
+                grabbedFan.Move(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            }
+            else
+            {
+                var hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0);
+                // check if we clicked a scene object (fan/player/sawblade) 
+                if (hit)
+                {
+                    if (currentPressTime >= GameManager.Instance.pressThreshold)
+                    {
+                        SceneObjectPressed(hit);
+                    }
+
+                    currentPressTime += Time.deltaTime;
+                }
+            }
+        }
+
+        // If we hold right click (rotate)
+        if (Input.GetMouseButton(1))
+        {
+            var selectedFan = fans.SingleOrDefault(x => x.selected);
+            if (selectedFan != null)
+            {
+                if (currentPressTime >= GameManager.Instance.pressThreshold)
+                {
+                    selectedFan.Rotate(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                }
+
+                currentPressTime += Time.deltaTime;
+            }
+        }
+        
+        // Reset press time
+        if (Input.GetMouseButtonUp(0))
+        {
+            currentPressTime = 0;
+            grabbedFan = null;
+        }
     }
-    
     private void DeselectAllFans()
     {
         fans.ForEach(f => { f.Deselect(); });
@@ -52,10 +101,20 @@ public class Level : MonoBehaviour
         }
     }
 
+    private void SceneObjectPressed(RaycastHit2D hit)
+    {
+        var fan = hit.transform.GetComponent<Fan>();
+        if (fan != null)
+        {
+            if (!fan.selected) fan.Select();
+            grabbedFan = fan;
+        }
+    }
+
     private Fan PlaceFan(Vector2 pos)
     {
         if (availableFans <= fans.Count) return null;
-        
+
         DeselectAllFans();
 
         var obj = Instantiate(GameManager.Instance.fanPrefab, pos, Quaternion.identity);
@@ -63,7 +122,7 @@ public class Level : MonoBehaviour
         fans.Add(fan);
         fan.Select();
         fan.level = this;
-        
+
         return fan;
     }
 

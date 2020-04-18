@@ -41,6 +41,7 @@ public class GameManager : Singleton<GameManager>
 
 
     public GameObject fanPrefab;
+    public float pressThreshold = 0.3f;
     
     void Awake()
     {
