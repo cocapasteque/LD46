@@ -28,8 +28,7 @@ public class Level : MonoBehaviour
             }
         }
     }
-
-
+    
     private void DeselectAllFans()
     {
         fans.ForEach(f => { f.Deselect(); });
@@ -63,7 +62,14 @@ public class Level : MonoBehaviour
         var fan = obj.GetComponent<Fan>();
         fans.Add(fan);
         fan.Select();
-
+        fan.level = this;
+        
         return fan;
+    }
+
+    public void RemoveFan(Fan fan)
+    {
+        fans.Remove(fan);
+        Destroy(fan.gameObject);
     }
 }

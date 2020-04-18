@@ -12,29 +12,27 @@ public class Fan : MonoBehaviour
 
     public Color selectedColor;
     public Color deselectedColor;
-
-    public UIView tooltipView;
-
-    public Slider forceSlider;
+    
+    public Level level;
     
     private void Start()
     {
-        tooltipView.GetComponentInParent<UICanvas>().CanvasName = Guid.NewGuid().ToString();
-        GetComponent<PointEffector2D>().forceMagnitude = forceSlider.value * 50;
+//        tooltipView.GetComponentInParent<UICanvas>().CanvasName = Guid.NewGuid().ToString();
+//        GetComponent<PointEffector2D>().forceMagnitude = forceSlider.value * 50;
     }
 
     public void Select()
     {
         selected = true;
         GetComponentInChildren<SpriteRenderer>().color = selectedColor;
-        tooltipView.Show();
+//        tooltipView.Show();
     }
 
     public void Deselect()
     {
         selected = false;
         GetComponentInChildren<SpriteRenderer>().color = deselectedColor;
-        tooltipView.Hide();
+//        tooltipView.Hide();
     }
 
     public void SliderValueChanged(float val)
@@ -42,4 +40,9 @@ public class Fan : MonoBehaviour
         GetComponent<PointEffector2D>().forceMagnitude = val * 50;
     }
 
+    public void Remove()
+    {
+        level.RemoveFan(this);
+    }
+    
 }

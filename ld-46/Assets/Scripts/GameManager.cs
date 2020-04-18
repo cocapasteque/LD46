@@ -13,15 +13,18 @@ public class GameManager : Singleton<GameManager>
         get => _state;
         set
         {
+            Vector2 cursorHotspot;
             switch (value)
             {
                 case GameState.Preparing:
                     OnLevelPrepare?.Invoke();
-                    Cursor.SetCursor(addFanIcon, Vector2.zero, CursorMode.ForceSoftware);
+                    cursorHotspot= new Vector2 (addFanIcon.width / 2, addFanIcon.height / 2);
+                    Cursor.SetCursor(addFanIcon, cursorHotspot, CursorMode.ForceSoftware);
                     break;
                 case GameState.Running:
                     OnLevelRun?.Invoke();
-                    Cursor.SetCursor(noMoreFanIcon, Vector2.zero, CursorMode.ForceSoftware);
+                    cursorHotspot = new Vector2 (noMoreFanIcon.width / 2, noMoreFanIcon.height / 2);
+                    Cursor.SetCursor(noMoreFanIcon, cursorHotspot, CursorMode.ForceSoftware);
                     break;
             }
 
