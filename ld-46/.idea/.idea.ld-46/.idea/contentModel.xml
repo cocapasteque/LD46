@@ -863,6 +863,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Fan.cs" t="Include" />
+          <e p="FinishLine.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="GameOverlay.cs" t="Include" />
           <e p="Level.cs" t="Include" />

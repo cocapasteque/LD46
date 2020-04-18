@@ -78,6 +78,11 @@ public class GameManager : Singleton<GameManager>
         OnPlayerDied?.Invoke();
         State = GameState.Preparing;
     }
+
+    public void ReachedFinishLine()
+    {
+        State = GameState.Preparing;
+    }
 }
 
 public enum GameState
