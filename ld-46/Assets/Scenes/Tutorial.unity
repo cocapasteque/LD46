@@ -3966,12 +3966,18 @@ MonoBehaviour:
     offset: {x: 0, y: 0, z: 0}
     displayNextButton: 1
     waitForEvent: 
+    onStepEnded:
+      m_PersistentCalls:
+        m_Calls: []
   - title: Player
     content: This is your hot air balloon. You cannot control it.
     origin: {fileID: 3034251109551810169}
     offset: {x: 500, y: 0, z: 0}
     displayNextButton: 1
     waitForEvent: 
+    onStepEnded:
+      m_PersistentCalls:
+        m_Calls: []
   - title: Placing fans
     content: To move you balloon to the finish line. You must place fans on your
       way to push it through the air
@@ -3979,20 +3985,48 @@ MonoBehaviour:
     offset: {x: 0, y: 0, z: 0}
     displayNextButton: 1
     waitForEvent: 
+    onStepEnded:
+      m_PersistentCalls:
+        m_Calls: []
   - title: Placing fans
     content: To place a fan, use LEFT CLICK.
     origin: {fileID: 0}
     offset: {x: 0, y: 0, z: 0}
     displayNextButton: 0
     waitForEvent: FanPlaced
+    onStepEnded:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Select fan
+    content: Select the fan by pressing LEFT CLICK.
+    origin: {fileID: 0}
+    offset: {x: 0, y: 0, z: 0}
+    displayNextButton: 0
+    waitForEvent: FanClicked
+    onStepEnded:
+      m_PersistentCalls:
+        m_Calls: []
   - title: Move fan
     content: Long press your LEFT CLICK to move the fan.
     origin: {fileID: 0}
     offset: {x: 0, y: 0, z: 0}
-    displayNextButton: 1
-    waitForEvent: 
+    displayNextButton: 0
+    waitForEvent: FanMoved
+    onStepEnded:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: Rotate fan
+    content: Long press your RIGHT CLICK to rotate the fan
+    origin: {fileID: 0}
+    offset: {x: 0, y: 0, z: 0}
+    displayNextButton: 0
+    waitForEvent: FanRotated
+    onStepEnded:
+      m_PersistentCalls:
+        m_Calls: []
   view: {fileID: 548077108}
   canvas: {fileID: 1141017198}
+  level: {fileID: 0}
 --- !u!114 &1141017195
 MonoBehaviour:
   m_ObjectHideFlags: 0

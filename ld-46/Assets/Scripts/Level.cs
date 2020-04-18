@@ -94,7 +94,7 @@ public class Level : MonoBehaviour
             grabbedFan = null;
         }
     }
-    private void DeselectAllFans()
+    public void DeselectAllFans()
     {
         fans.ForEach(f => { f.Deselect(); });
     }
@@ -136,7 +136,7 @@ public class Level : MonoBehaviour
         var obj = Instantiate(GameManager.Instance.fanPrefab, pos, Quaternion.identity);
         var fan = obj.GetComponent<Fan>();
         fans.Add(fan);
-        fan.Select();
+        if(!isTutorial) fan.Select();
         fan.level = this;
 
         return fan;
