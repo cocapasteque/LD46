@@ -35,6 +35,9 @@ public class GameManager : Singleton<GameManager>
 
     public Texture2D addFanIcon;
     public Texture2D noMoreFanIcon;
+
+
+    public GameObject fanPrefab;
     
     void Awake()
     {
@@ -61,8 +64,7 @@ public class GameManager : Singleton<GameManager>
             State = GameState.Preparing;
         }
     }
-
-
+    
     public void StartLevel()
     {
         State = GameState.Running;

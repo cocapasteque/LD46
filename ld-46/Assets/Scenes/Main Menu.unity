@@ -11227,16 +11227,20 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: OnLevelRun
-      Entry: 6
-      Data: 
-    - Name: OnLevelPrepare
-      Entry: 6
-      Data: 
-    - Name: OnPlayerDied
-      Entry: 6
-      Data: 
+    SerializationNodes: []
+  OnLevelRun:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLevelPrepare:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerDied:
+    m_PersistentCalls:
+      m_Calls: []
+  addFanIcon: {fileID: 2800000, guid: 787cbcefdda078b468f8a52a3dd5271b, type: 3}
+  noMoreFanIcon: {fileID: 2800000, guid: f7a5c2bfdb0fd4e4e8859e843d6963ce, type: 3}
+  fanPrefab: {fileID: 1147072154864648411, guid: 9ae3e1457eb97674cad1bf223e7db523,
+    type: 3}
 --- !u!4 &1647366061
 Transform:
   m_ObjectHideFlags: 0
