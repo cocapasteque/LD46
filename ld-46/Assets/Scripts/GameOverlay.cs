@@ -67,4 +67,10 @@ public class GameOverlay : Singleton<GameOverlay>
     {
         FanInfo.SetActive(false);
     }
+
+    public void DeleteFan()
+    {
+        level.RemoveCurrentFan();
+        FanInfo.SetActive(false);
+    }
 }

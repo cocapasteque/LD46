@@ -13,6 +13,7 @@ public class Level : MonoBehaviour
 
     private float currentPressTime = 0f;
 
+    private FanSelector selectedFan;
     private FanSelector grabbedFan;
     
     public bool isTutorial = false;
@@ -90,6 +91,7 @@ public class Level : MonoBehaviour
     public void DeselectAllFans()
     {
         fans.ForEach(f => { f.Deselect(); });
+        selectedFan = null;
     }
 
     private void SceneObjectClicked(RaycastHit2D hit)
@@ -101,11 +103,13 @@ public class Level : MonoBehaviour
             if (fan.selected)
             {
                 fan.Deselect();
+                selectedFan = null;
             }
             else
             {
                 DeselectAllFans();
                 fan.Select();
+                selectedFan = fan;
             }
         }
     }
@@ -132,8 +136,17 @@ public class Level : MonoBehaviour
         fans.Add(fan);
         if(!isTutorial) fan.Select();
         fan.level = this;
+        selectedFan = fan;
 
         return fan;
+    }
+
+    public void RemoveCurrentFan()
+    {
+        if (selectedFan != null)
+        {
+            RemoveFan(selectedFan);
+        }
     }
 
     public void RemoveFan(FanSelector fan)
