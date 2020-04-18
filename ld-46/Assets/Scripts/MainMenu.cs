@@ -15,9 +15,9 @@ public class MainMenu : SerializedMonoBehaviour
     public GameObject unlockedLevel;
     public GameObject lockedLevel;
     public Transform levelContainers;
-    
+
     private Dictionary<string, bool> levels;
-    
+
     void Start()
     {
         InitializeLevels();
@@ -41,9 +41,18 @@ public class MainMenu : SerializedMonoBehaviour
             Debug.Log("Creating button for " + level.Key);
             var btn = Instantiate(level.Value ? unlockedLevel : lockedLevel, levelContainers);
             btn.GetComponentInChildren<TMP_Text>().text = level.Value ? level.Key : "Locked";
+
+            // If level unlocked, hook it to level load logic
+            if (level.Value)
+            {
+                btn.GetComponent<UIButton>().OnClick.OnTrigger.Event.AddListener(() =>
+                {
+                    GameManager.Instance.LoadLevel(level.Key);
+                });
+            }
         }
     }
-    
+
     private void CheckUnlockState()
     {
         var pref = PlayerPrefs.GetString("unlocked_levels", "['Game']");
