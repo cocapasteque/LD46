@@ -15,6 +15,7 @@ public class GameOverlay : Singleton<GameOverlay>
     public Color runningColor;
     public Color preparingColor;
     public UIButton startButton;
+    public UIButton stopButton;
 
     public Level level;
 
@@ -42,11 +43,19 @@ public class GameOverlay : Singleton<GameOverlay>
         GameManager.Instance.StartLevel();
         level.DeselectAllFans();
     }
+
+    public void StopGame()
+    {
+        GameManager.Instance.KillPlayer();
+    }
+
     void SetPrepare()
     {
         gameState.text = "Preparing";
         gameState.color = preparingColor;
-        startButton.EnableButton();
+        //startButton.EnableButton();
+        startButton.gameObject.SetActive(true);
+        stopButton.gameObject.SetActive(false);
         
         level = GameObject.FindObjectOfType<Level>();
         levelName.text = level.levelName;
@@ -55,7 +64,9 @@ public class GameOverlay : Singleton<GameOverlay>
     {
         gameState.text = "Running";
         gameState.color = runningColor;
-        startButton.DisableButton();
+        //startButton.DisableButton();
+        startButton.gameObject.SetActive(false);
+        stopButton.gameObject.SetActive(true);
     }   
     
     public void SelectFan()
