@@ -870,6 +870,9 @@
           <e p="MainMenu.cs" t="Include" />
           <e p="Obstacle.cs" t="Include" />
           <e p="Player.cs" t="Include" />
+          <e p="TutorialManager.cs" t="Include" />
+          <e p="TutorialStep.cs" t="Include" />
+          <e p="TutorialView.cs" t="Include" />
           <e p="Utilities" t="Include">
             <e p="Singleton.cs" t="Include" />
           </e>

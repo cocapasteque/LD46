@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Overlay.unity
     guid: 277c32bc21eb29b4c990588538b08d34
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 3f487eda0ee7cf84ca8eabff46a06538
   m_configObjects: {}

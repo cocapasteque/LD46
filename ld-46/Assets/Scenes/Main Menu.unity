@@ -7165,6 +7165,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   levelNames:
+  - Tutorial
   - Game
   - Level 2
   unlockedLevel: {fileID: 2667058930438041067, guid: 5b2b5de51b2cdb84f9de3f3a9a1a076d,
