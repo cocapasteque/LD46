@@ -17,7 +17,7 @@ public class MainMenu : SerializedMonoBehaviour
     public Transform levelContainers;
 
     private Dictionary<string, bool> levels;
-
+    private List<GameObject> levelBtns;
     void Start()
     {
         InitializeLevels();
@@ -36,6 +36,7 @@ public class MainMenu : SerializedMonoBehaviour
 
     private void InstantiateLevelButtons()
     {
+        levelBtns = new List<GameObject>();
         foreach (var level in levels)
         {
             Debug.Log("Creating button for " + level.Key);
@@ -50,6 +51,7 @@ public class MainMenu : SerializedMonoBehaviour
                     GameManager.Instance.LoadLevel(level.Key);
                 });
             }
+            levelBtns.Add(btn);
         }
     }
 
@@ -57,7 +59,8 @@ public class MainMenu : SerializedMonoBehaviour
     {
         var pref = PlayerPrefs.GetString("unlocked_levels", "['Tutorial','Game']");
         string[] unlocked = JsonConvert.DeserializeObject<string[]>(pref);
-
+        if (unlocked == null) unlocked = new []{"Tutorial", "Game"};
+        Debug.Log(string.Join(",", unlocked));
         foreach (var level in unlocked)
         {
             // unlocking level in dictionary if in player prefs.
@@ -73,5 +76,19 @@ public class MainMenu : SerializedMonoBehaviour
         {
             levels.Add(level, false);
         }
+    }
+
+    public void ResetProgress()
+    {
+        Debug.Log("Reseting progress");
+        PlayerPrefs.SetString("unlocked_levels", "['Tutorial', 'Game']");
+        foreach (var btn in levelBtns)
+        {
+            Destroy(btn);
+        }
+        levelBtns.Clear();
+        InitializeLevels();
+        CheckUnlockState();
+        InstantiateLevelButtons();
     }
 }

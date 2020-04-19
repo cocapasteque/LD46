@@ -17,3 +17,5 @@ MonoBehaviour:
   Names:
   - Start Panel
   - Game State
+  - Pause Panel
+  - Success Panel

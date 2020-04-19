@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\Antoine\.Rider2019.2\system\extResources" t="IncludeRecursive" />
@@ -14,6 +14,13 @@
                 <e p="LevelLoader.cs" t="Include" />
                 <e p="MouseLook.cs" t="Include" />
               </e>
+            </e>
+          </e>
+        </e>
+        <e p="Art" t="Include">
+          <e p="7soulsrpggraphics_uipack" t="Include">
+            <e p="Assets" t="Include">
+              <e p="readme.txt" t="Include" />
             </e>
           </e>
         </e>
@@ -896,10 +903,12 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="AliasInput.cs" t="Include" />
           <e p="Fan.cs" t="Include" />
           <e p="FanSelector.cs" t="Include" />
           <e p="FinishLine.cs" t="Include" />
           <e p="Flamethrower.cs" t="Include" />
+          <e p="FreezeRot.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="GameOverlay.cs" t="Include" />
           <e p="Level.cs" t="Include" />

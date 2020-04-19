@@ -15,8 +15,10 @@ MonoBehaviour:
   CategoryName: Main Menu
   DatabaseType: 0
   Names:
-  - Start
-  - Credits
-  - Options
-  - Exit
   - Back
+  - Confirm Alias
+  - Credits
+  - Exit
+  - Options
+  - Reset
+  - Start

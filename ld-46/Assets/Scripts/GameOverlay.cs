@@ -29,9 +29,12 @@ public class GameOverlay : Singleton<GameOverlay>
     public TextMeshProUGUI Fans;
     public TextMeshProUGUI RunTime;
 
+    public GameObject overlay;
+    public UIView pauseView;
+    
     private bool running = false;
     private float currentTime;
-    
+
     private void Awake()
     {
         GameManager.Instance.OnLevelPrepare.AddListener(SetPrepare);
@@ -44,6 +47,32 @@ public class GameOverlay : Singleton<GameOverlay>
     {
         ForcePercentage.text = (ForceSlider.normalizedValue * 100).ToString("F0") + "%";
         RotationAngle.text = (RotationSlider.normalizedValue * 360).ToString("F0") + "°";
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pauseView.IsVisible)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        overlay.SetActive(true);
+        pauseView.Show();   
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        overlay.SetActive(false);
+        pauseView.Hide();
     }
 
     public void StartGame()
@@ -109,5 +138,11 @@ public class GameOverlay : Singleton<GameOverlay>
     public void UpdateTries()
     {
         Tries.text = level.tries.ToString();
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1;
+        GameManager.Instance.LoadMainMenu();
     }
 }

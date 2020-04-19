@@ -84,6 +84,19 @@ public class GameManager : Singleton<GameManager>
     {
         State = GameState.Preparing;
     }
+
+    public void LoadMainMenu()
+    {
+        StartCoroutine(Work());
+        
+        IEnumerator Work()
+        {
+            var menu = SceneManager.LoadSceneAsync("Main Menu");
+            var overlay = SceneManager.UnloadSceneAsync("Game Overlay");
+
+            while (!menu.isDone && !overlay.isDone) yield return null;
+        }
+    }
 }
 
 public enum GameState
