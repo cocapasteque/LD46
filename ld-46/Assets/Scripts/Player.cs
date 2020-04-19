@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Player killed");
         m_rb.isKinematic = true;
+        GetComponent<CircleCollider2D>().enabled = true;
         graphics.SetActive(true);
         ResetPosition();
     }
@@ -79,14 +80,18 @@ public class Player : MonoBehaviour
     {
         Camera.main.GetComponent<CameraController>().Shake();
         graphics.SetActive(false);
+        GetComponent<CircleCollider2D>().enabled = false;
         foreach (var effect in deathEffects)
         {
             var o = Instantiate(effect, transform.position, Quaternion.identity);
             Destroy(o, 5);
         }
+
+        m_rb.isKinematic = true;
+        ResetPosition();
     }
 
-    void ResetPosition()
+    public void ResetPosition()
     {
         m_rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         m_rb.velocity = Vector3.zero;

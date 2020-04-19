@@ -137,7 +137,8 @@ public class GameOverlay : Singleton<GameOverlay>
     
     public void RetryLevel()
     {
-        GameManager.Instance.KillPlayer();
+        FindObjectOfType<Player>().ResetPosition();
+        GameManager.Instance.State = GameState.Preparing;
         level.RemoveAllFans();
         UpdateTries();
         ResumeGame();
