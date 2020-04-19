@@ -1143,7 +1143,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: General
-        SoundName: BUTTON_Click_Compressor_Small_01_stereo
+        SoundName: confirm
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Jump
@@ -4161,7 +4161,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: General
-        SoundName: BUTTON_Click_Compressor_Small_01_stereo
+        SoundName: confirm
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Jump
@@ -12442,7 +12442,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: General
-        SoundName: BUTTON_Click_Compressor_Small_01_stereo
+        SoundName: wrong_and_back
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Jump
@@ -15214,7 +15214,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: General
-        SoundName: BUTTON_Click_Compressor_Small_01_stereo
+        SoundName: confirm
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Jump
@@ -18135,7 +18135,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: General
-        SoundName: BUTTON_Click_Compressor_Small_01_stereo
+        SoundName: wrong_and_back
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Jump
@@ -20644,7 +20644,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: General
-        SoundName: BUTTON_Click_Compressor_Small_01_stereo
+        SoundName: wrong_and_back
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Jump
@@ -23154,7 +23154,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: General
-        SoundName: BUTTON_Click_Compressor_Small_01_stereo
+        SoundName: wrong_and_back
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Jump
@@ -25577,7 +25577,7 @@ MonoBehaviour:
       SoundData:
         SoundSource: 0
         DatabaseName: General
-        SoundName: BUTTON_Click_Compressor_Small_01_stereo
+        SoundName: confirm
         AudioClip: {fileID: 0}
         OutputAudioMixerGroup: {fileID: 0}
     PresetCategory: Jump

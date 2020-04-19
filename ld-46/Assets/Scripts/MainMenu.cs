@@ -6,7 +6,9 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : SerializedMonoBehaviour
 {
@@ -17,13 +19,17 @@ public class MainMenu : SerializedMonoBehaviour
     public Transform levelContainers;
 
     public LevelSelection levelSelection;
-    
+
+    public AudioMixer Mixer;
+    public Slider AudioSlider;
+
     private Dictionary<string, bool> levels;
     private List<GameObject> levelBtns;
     
     
     void Start()
     {
+        ResetAudioLevels();
         InitializeLevels();
         CheckUnlockState();
         InstantiateLevelButtons();
@@ -103,5 +109,19 @@ public class MainMenu : SerializedMonoBehaviour
         InitializeLevels();
         CheckUnlockState();
         InstantiateLevelButtons();
+    }
+
+    private void ResetAudioLevels()
+    {
+        float volume = PlayerPrefs.HasKey("volume") ? PlayerPrefs.GetFloat("volume") : 0.5f;
+        AudioSlider.normalizedValue = volume;
+        ChangeVolume(volume);
+    }
+
+    public void ChangeVolume(float normalizedValue)
+    {
+        float logValue = 20f * Mathf.Log10(normalizedValue);
+        Mixer.SetFloat("MasterVolume", normalizedValue > 0 ? logValue : -80f);
+        PlayerPrefs.SetFloat("volume", normalizedValue);
     }
 }

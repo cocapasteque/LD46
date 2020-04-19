@@ -46,7 +46,7 @@ public class GameManager : Singleton<GameManager>
     public int currentLevel;
     public GameObject fanPrefab;
     public float pressThreshold = 0.3f;
-    public List<string> scenesInBuild = new List<string>();
+    public List<string> scenesInBuild = new List<string>();  
 
     void Awake()
     {

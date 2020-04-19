@@ -56,6 +56,35 @@ MonoBehaviour:
   Sounds:
   - AudioClip: {fileID: 8300000, guid: da76b76f1d9330d42bbd207f6046315b, type: 3}
     Weight: 1
+--- !u!114 &-4337331162322407772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: wrong_and_back
+  m_EditorClassIdentifier: 
+  DatabaseName: General
+  SoundName: wrong_and_back
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 0
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: aaa7fa0f3529ad544ad19de269694c29, type: 3}
+    Weight: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +103,40 @@ MonoBehaviour:
   SoundNames:
   - No Sound
   - BUTTON_Click_Compressor_Small_01_stereo
+  - confirm
   - No Sound
+  - wrong_and_back
   Database:
   - {fileID: -7714341658438950659}
   - {fileID: -5128126250410828098}
+  - {fileID: 6168648977340408954}
+  - {fileID: -4337331162322407772}
+--- !u!114 &6168648977340408954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: confirm
+  m_EditorClassIdentifier: 
+  DatabaseName: General
+  SoundName: confirm
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 0
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: 98f7e06897fc59049b671976b763fa9d, type: 3}
+    Weight: 1
