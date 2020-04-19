@@ -28,5 +28,6 @@ public class AliasInput : MonoBehaviour
     {
         PlayerPrefs.SetString("player_alias", inputField.text);
         Debug.Log("Setting alias to " + inputField.text);
+        PlayerPrefs.Save();
     }
 }

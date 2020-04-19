@@ -11,7 +11,7 @@ public class FinishLine : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Unlocking level
-            var levelsString = PlayerPrefs.GetString("unlocked_levels'", "['Tutorial','Level 1']");
+            var levelsString = PlayerPrefs.GetString("unlocked_levels", "['Tutorial','Level 1']");
             Debug.Log(levelsString);
             var array = JsonConvert.DeserializeObject<string[]>(levelsString);
             var list = array.ToList();
@@ -20,6 +20,7 @@ public class FinishLine : MonoBehaviour
             Debug.Log(levelsString);
             PlayerPrefs.SetString("unlocked_levels", levelsString);
             GameManager.Instance.ReachedFinishLine();
+            PlayerPrefs.Save();
         }
     }
 }
