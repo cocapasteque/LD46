@@ -64,6 +64,7 @@ public class TutorialManager : MonoBehaviour
 
     public void Event(string name)
     {
+        if (m_currentIndex >= steps.Length) return; 
         if (steps[m_currentIndex].waitForEvent == name)
         {
             DisplayStep(++m_currentIndex);
@@ -73,7 +74,14 @@ public class TutorialManager : MonoBehaviour
     public void NextStep()
     {
         steps[m_currentIndex].onStepEnded?.Invoke();
-        DisplayStep(++m_currentIndex);
+        if (++m_currentIndex < steps.Length)
+        {
+            DisplayStep(m_currentIndex);
+        }
+        else
+        {
+            view.Hide();
+        }
     }
 
     public void CanPlaceFan(bool value)
