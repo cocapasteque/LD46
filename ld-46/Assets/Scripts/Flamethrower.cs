@@ -7,6 +7,9 @@ public class Flamethrower : MonoBehaviour
     public Transform target;
     public Transform rotationOrigin;
 
+    private AudioClip clip;
+    public AudioSource Audio;
+
     public bool trackTarget;
 
     [Tooltip("Shots per minute")]
@@ -26,6 +29,7 @@ public class Flamethrower : MonoBehaviour
 
     private void Start()
     {
+        clip = Audio.clip;
         foreach(var particle in ParticleSystems)
         {
             particle.Stop(); 
@@ -61,6 +65,8 @@ public class Flamethrower : MonoBehaviour
                 particle.Play();
                 StartCoroutine(GrowCollider());
             }
+            Audio.pitch = clip.length / fireDuration;
+            Audio.Play();
             yield return new WaitForSeconds(fireDuration);
             StartCoroutine(ShrinkCollider());
             yield return new WaitForSeconds(60f/fireRate);
