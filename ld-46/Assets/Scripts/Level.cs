@@ -162,6 +162,15 @@ public class Level : MonoBehaviour
         }
     }
 
+    public void RemoveAllFans()
+    {
+        foreach(var fan in fans)
+        {
+            Destroy(fan.transform.parent.gameObject);
+        }
+        fans = new List<FanSelector>();
+    }
+
     public void RemoveFan(FanSelector fan)
     {
         fans.Remove(fan);

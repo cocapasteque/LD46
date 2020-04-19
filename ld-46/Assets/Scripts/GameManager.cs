@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Events;
@@ -40,18 +41,35 @@ public class GameManager : Singleton<GameManager>
     
     public Texture2D addFanIcon;
     public Texture2D noMoreFanIcon;
-    
+
+    public int currentLevel;
     public GameObject fanPrefab;
     public float pressThreshold = 0.3f;
-    
+    public List<string> scenesInBuild = new List<string>();
+
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
         State = GameState.MainMenu;
+
+        for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+            int lastSlash = scenePath.LastIndexOf("/");
+            scenesInBuild.Add(scenePath.Substring(lastSlash + 1, scenePath.LastIndexOf(".") - lastSlash - 1));
+        }
     }
 
     public void LoadLevel(string levelName)
     {
+        if (levelName.StartsWith("Level"))
+        {
+            currentLevel = int.Parse(levelName.Split(' ')[1]);
+        }
+        else
+        {
+            currentLevel = 0;
+        }
         StartCoroutine(Work());
         IEnumerator Work()
         {

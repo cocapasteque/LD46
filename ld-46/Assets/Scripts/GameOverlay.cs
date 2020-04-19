@@ -34,6 +34,8 @@ public class GameOverlay : Singleton<GameOverlay>
     public GameObject overlay;
     public UIView pauseView;
     public UIView completedView;
+
+    public UIButton nextLevelButton;
     
     private bool running = false;
     private float currentTime;
@@ -80,7 +82,8 @@ public class GameOverlay : Singleton<GameOverlay>
         running = false;
         gameState.text = "Completed !";
         gameState.color = completedColor;
-        
+        SendLeaderboard();
+
         StartCoroutine(Work());
         
         IEnumerator Work()
@@ -88,6 +91,24 @@ public class GameOverlay : Singleton<GameOverlay>
             yield return new WaitForSeconds(0.2f);
             overlay.SetActive(true);
             completedView.Show();
+            PrepareNextLevelButton();
+        }
+    }
+
+    private void PrepareNextLevelButton()
+    {
+        int nextLevel = GameManager.Instance.currentLevel + 1;
+        if (GameManager.Instance.scenesInBuild.Contains("Level " + nextLevel))
+        {
+            nextLevelButton.EnableButton();
+            nextLevelButton.OnClick.OnTrigger.Event.AddListener(() =>
+            {
+                GameManager.Instance.LoadLevel("Level " + nextLevel);
+            });
+        }
+        else
+        {
+            nextLevelButton.DisableButton();
         }
     }
 
@@ -117,7 +138,7 @@ public class GameOverlay : Singleton<GameOverlay>
     public void RetryLevel()
     {
         GameManager.Instance.KillPlayer();
-               
+        level.RemoveAllFans();
         UpdateTries();
         ResumeGame();
     }
