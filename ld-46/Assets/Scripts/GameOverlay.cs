@@ -179,6 +179,7 @@ public class GameOverlay : Singleton<GameOverlay>
         levelName.text = level.levelName;
         running = false;
         UpdateTries();
+        level.UpdateFanCount();
     }
     void SetRunning()
     {

@@ -27,6 +27,35 @@ MonoBehaviour:
   ResetSequenceAfterInactiveTime: 0
   SequenceResetTime: 5
   Sounds: []
+--- !u!114 &-5128126250410828098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c631d933489d4ca7328a2a5983e10, type: 3}
+  m_Name: BUTTON_Click_Compressor_Small_01_stereo
+  m_EditorClassIdentifier: 
+  DatabaseName: General
+  SoundName: BUTTON_Click_Compressor_Small_01_stereo
+  IgnoreListenerPause: 1
+  Volume:
+    MinValue: 0
+    MaxValue: 0
+  Pitch:
+    MinValue: 0
+    MaxValue: 0
+  SpatialBlend: 0
+  Loop: 0
+  Mode: 0
+  ResetSequenceAfterInactiveTime: 0
+  SequenceResetTime: 5
+  Sounds:
+  - AudioClip: {fileID: 8300000, guid: da76b76f1d9330d42bbd207f6046315b, type: 3}
+    Weight: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,9 +69,12 @@ MonoBehaviour:
   m_Name: SoundDatabase_General
   m_EditorClassIdentifier: 
   DatabaseName: General
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243200503604879540, guid: bc155dfdccec1be4780029a8bd542de5,
+    type: 2}
   SoundNames:
   - No Sound
+  - BUTTON_Click_Compressor_Small_01_stereo
   - No Sound
   Database:
   - {fileID: -7714341658438950659}
+  - {fileID: -5128126250410828098}

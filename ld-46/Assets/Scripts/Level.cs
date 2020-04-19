@@ -36,7 +36,7 @@ public class Level : MonoBehaviour
             tManager.level = this;
         }
 
-        tries = PlayerPrefs.HasKey("Tries_" + levelName) ? PlayerPrefs.GetInt("Tries_" + levelName) : 1;
+        tries = PlayerPrefs.HasKey("Tries_" + levelName) ? PlayerPrefs.GetInt("Tries_" + levelName) : 1;     
     }
 
     public void ClearTries()
@@ -188,7 +188,7 @@ public class Level : MonoBehaviour
         GameOverlay.Instance.UpdateTries();
     }
 
-    private void UpdateFanCount()
+    public void UpdateFanCount()
     {
         GameOverlay.Instance.Fans.text = fans.Count() + "/" + availableFans;
     }
