@@ -12,6 +12,7 @@ public class FinishLine : MonoBehaviour
         {
             // Unlocking level
             var levelsString = PlayerPrefs.GetString("unlocked_levels'", "['Tutorial','Level 1']");
+            Debug.Log(levelsString);
             var array = JsonConvert.DeserializeObject<string[]>(levelsString);
             var list = array.ToList();
             list.Add(unlockingLevel);
