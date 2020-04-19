@@ -36,6 +36,7 @@ public class GameManager : Singleton<GameManager>
 
     public UnityEvent OnLevelRun;
     public UnityEvent OnLevelPrepare;
+    public UnityEvent OnBeforePlayerDied;
     public UnityEvent OnPlayerDied;
     public UnityEvent OnLevelCompleted;
     
@@ -101,9 +102,15 @@ public class GameManager : Singleton<GameManager>
     }
     public void KillPlayer()
     {
-        OnPlayerDied?.Invoke();
-        State = GameState.Preparing;
-        GameOverlay.Instance.level.AddTry();
+        StartCoroutine(Work());
+        IEnumerator Work()
+        {
+            OnBeforePlayerDied?.Invoke();
+            yield return new WaitForSeconds(2);
+            OnPlayerDied?.Invoke();
+            State = GameState.Preparing;
+            GameOverlay.Instance.level.AddTry();
+        }
     }
 
     public void ReachedFinishLine()

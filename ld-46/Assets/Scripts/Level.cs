@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Level : MonoBehaviour
 {
-    public string levelName;    
+    public string levelName;
     public int availableFans = 5;
     public float baseScore;
     public float baseTime;
@@ -20,28 +20,29 @@ public class Level : MonoBehaviour
 
     private FanSelector selectedFan;
     private FanSelector grabbedFan;
-    
+
     public bool isTutorial = false;
     private TutorialManager tManager;
     private Camera mainCamera;
     private Vector2 dragOffset;
-    
+
 
     private void Start()
-    {     
+    {
         mainCamera = Camera.main;
         if (isTutorial)
         {
             tManager = FindObjectOfType<TutorialManager>();
             tManager.level = this;
         }
-        tries = PlayerPrefs.HasKey("Tries_" + levelName) ? PlayerPrefs.GetInt("Tries_" + levelName) : 1;      
+
+        tries = PlayerPrefs.HasKey("Tries_" + levelName) ? PlayerPrefs.GetInt("Tries_" + levelName) : 1;
     }
 
     public void ClearTries()
     {
         PlayerPrefs.SetInt("Tries_" + levelName, 1);
-        tries =PlayerPrefs.HasKey("Tries_" + levelName) ? PlayerPrefs.GetInt("Tries_" + levelName) : 1;
+        tries = PlayerPrefs.HasKey("Tries_" + levelName) ? PlayerPrefs.GetInt("Tries_" + levelName) : 1;
     }
 
     private void Update()
@@ -74,7 +75,7 @@ public class Level : MonoBehaviour
                 // If we already grabbed a fan
                 if (grabbedFan != null)
                 {
-                    grabbedFan.Move((Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition) + dragOffset);
+                    grabbedFan.Move((Vector2) mainCamera.ScreenToWorldPoint(Input.mousePosition) + dragOffset);
                     if (isTutorial) tManager.Event("FanMoved");
                 }
                 else
@@ -101,6 +102,7 @@ public class Level : MonoBehaviour
             }
         }
     }
+
     public void DeselectAllFans()
     {
         fans.ForEach(f => { f.Deselect(); });
@@ -133,7 +135,7 @@ public class Level : MonoBehaviour
         if (fan != null)
         {
             if (!fan.selected) fan.Select();
-            dragOffset = (Vector2)fan.transform.parent.position - hitPosition;
+            dragOffset = (Vector2) fan.transform.parent.position - hitPosition;
             grabbedFan = fan;
         }
     }
@@ -147,11 +149,11 @@ public class Level : MonoBehaviour
         var obj = Instantiate(GameManager.Instance.fanPrefab, pos, Quaternion.identity);
         var fan = obj.GetComponentInChildren<FanSelector>();
         fans.Add(fan);
-        if(!isTutorial) fan.Select();
+        if (!isTutorial) fan.Select();
         fan.level = this;
         selectedFan = fan;
         UpdateFanCount();
-        return fan;      
+        return fan;
     }
 
     public void RemoveCurrentFan()
@@ -164,10 +166,11 @@ public class Level : MonoBehaviour
 
     public void RemoveAllFans()
     {
-        foreach(var fan in fans)
+        foreach (var fan in fans)
         {
             Destroy(fan.transform.parent.gameObject);
         }
+
         fans = new List<FanSelector>();
     }
 
@@ -180,7 +183,7 @@ public class Level : MonoBehaviour
 
     public void AddTry()
     {
-        tries++;        
+        tries++;
         PlayerPrefs.SetInt("Tries_" + levelName, tries);
         GameOverlay.Instance.UpdateTries();
     }

@@ -183,6 +183,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseForce: 0
+  deathEffects:
+  - {fileID: 193062, guid: 01949c12a89de284792dc4b7b7128404, type: 3}
+  - {fileID: 167524, guid: fdac75e990da47649b31f10049c400b0, type: 3}
+  graphics: {fileID: 3034251108951122828}
 --- !u!50 &3034251109574626022
 Rigidbody2D:
   serializedVersion: 4

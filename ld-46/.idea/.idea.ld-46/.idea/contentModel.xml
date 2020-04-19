@@ -946,6 +946,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AliasInput.cs" t="Include" />
+          <e p="CameraController.cs" t="Include" />
           <e p="Fan.cs" t="Include" />
           <e p="FanSelector.cs" t="Include" />
           <e p="FinishLine.cs" t="Include" />

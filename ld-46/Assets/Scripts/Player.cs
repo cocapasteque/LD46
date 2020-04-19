@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
 {
     public float baseForce = 5f;
 
+    public GameObject[] deathEffects;
+    public GameObject graphics;
+
     private Rigidbody2D m_rb;
     private Vector3 m_startingPosition;
     private Quaternion m_startingRotation;
@@ -29,6 +32,7 @@ public class Player : MonoBehaviour
         basket_startingPosition = basket.transform.position;
         basket_startingRotation = basket.transform.rotation;
 
+        GameManager.Instance.OnBeforePlayerDied.AddListener(EffectKilled);
         GameManager.Instance.OnPlayerDied.AddListener(Killed);
         GameManager.Instance.OnLevelRun.AddListener(Started);
         GameManager.Instance.OnLevelCompleted.AddListener(Completed);
@@ -39,6 +43,7 @@ public class Player : MonoBehaviour
     {
         ApplyBaseForce();
     }
+
     void ApplyBaseForce()
     {
         if (GameManager.Instance.State != GameState.Running) return;
@@ -56,17 +61,29 @@ public class Player : MonoBehaviour
             ResetPosition();
         }
     }
-    
+
     void Started()
     {
         m_rb.isKinematic = false;
     }
+
     void Killed()
     {
         Debug.Log("Player killed");
         m_rb.isKinematic = true;
-
+        graphics.SetActive(true);
         ResetPosition();
+    }
+
+    void EffectKilled()
+    {
+        Camera.main.GetComponent<CameraController>().Shake();
+        graphics.SetActive(false);
+        foreach (var effect in deathEffects)
+        {
+            var o = Instantiate(effect, transform.position, Quaternion.identity);
+            Destroy(o, 5);
+        }
     }
 
     void ResetPosition()
