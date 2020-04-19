@@ -51,6 +51,11 @@ MonoBehaviour:
   deselectedColor: {r: 1, g: 1, b: 1, a: 1}
   level: {fileID: 0}
   graphics: {fileID: 3883968444349675295}
+  FanSprites:
+  - {fileID: 21300000, guid: 954179d77e5b4fb41842e34e7032da57, type: 3}
+  - {fileID: 21300000, guid: c112d44e080471b44b0d13c0765ea5fe, type: 3}
+  - {fileID: 21300000, guid: 1f6fba565767a0e4a88eede91b6ac9a4, type: 3}
+  fanChangeTime: 0.01
   currentAngle: 0
 --- !u!61 &1958315107648642547
 BoxCollider2D:
@@ -193,7 +198,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: cfde765b6de9bab4fb329fee8f70db1e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 954179d77e5b4fb41842e34e7032da57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -250,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Selector: {fileID: 8833549703251348620}
   maxForce: 100
+  currentForce: 0
 --- !u!61 &9121674616217693405
 BoxCollider2D:
   m_ObjectHideFlags: 0

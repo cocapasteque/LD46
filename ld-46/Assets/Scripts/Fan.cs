@@ -13,7 +13,7 @@ public class Fan : MonoBehaviour
     public float maxForce;
     private BoxCollider2D coll;
 
-    private float currentForce;
+    public float currentForce;
 
     private void Start()
     {

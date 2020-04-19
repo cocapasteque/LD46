@@ -13,10 +13,15 @@ public class FanSelector : MonoBehaviour
     public Level level;
     public SpriteRenderer graphics;
 
-    public float currentAngle;
+    public List<Sprite> FanSprites;
 
+    public float fanChangeTime;
+    public float currentAngle;
+    private int currentSpriteIndex;
+    private float currentSpriteTime;
     private void Start()
     {
+        currentSpriteIndex = 0;
         currentAngle = 0f;
     }
 
@@ -28,6 +33,19 @@ public class FanSelector : MonoBehaviour
             float rad = (1f - GameOverlay.Instance.RotationSlider.normalizedValue) * 2f * Mathf.PI;
             float deg = (180 / Mathf.PI) * rad;
             transform.parent.rotation = Quaternion.Euler(0, 0, deg);
+        }
+        if (Fan.currentForce > 0)
+        {
+            if (currentSpriteTime > fanChangeTime / Fan.currentForce)
+            {
+                currentSpriteIndex = (currentSpriteIndex + 1) % FanSprites.Count;
+                graphics.sprite = FanSprites[currentSpriteIndex];
+                currentSpriteTime = 0f;
+            }
+            else
+            {
+                currentSpriteTime += Time.deltaTime;
+            }
         }
     }
 
