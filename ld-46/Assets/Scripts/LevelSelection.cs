@@ -7,6 +7,8 @@ public class LevelSelection : MonoBehaviour
 {
     public GameObject leadButtons;
     public List<LeaderButton> btnList;
+    public string selectedLevel = string.Empty;
+    public GameObject playButton;
     
     public void LoadLeaderboard(string levelName)
     {
@@ -31,5 +33,10 @@ public class LevelSelection : MonoBehaviour
 
             leadButtons.SetActive(true);
         });
+    }
+
+    public void PlaySelectedLevel()
+    {
+        GameManager.Instance.LoadLevel(selectedLevel);
     }
 }

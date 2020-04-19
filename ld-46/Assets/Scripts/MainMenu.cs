@@ -54,6 +54,8 @@ public class MainMenu : SerializedMonoBehaviour
                 {
                     var key = level.Key.Replace(" ", string.Empty).ToLower();
                     levelSelection.LoadLeaderboard(key);
+                    levelSelection.selectedLevel = level.Key;
+                    levelSelection.playButton.SetActive(true);
                 });
             }
             levelBtns.Add(btn);
