@@ -3672,7 +3672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 64.35}
+  m_AnchoredPosition: {x: 0, y: 64.3501}
   m_SizeDelta: {x: 0, y: -52.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &417610790
@@ -8344,6 +8344,7 @@ MonoBehaviour:
   levelName: {fileID: 417610790}
   runningColor: {r: 0.05755361, g: 0.851, b: 0.028099073, a: 1}
   preparingColor: {r: 0.2981043, g: 0.70367044, b: 0.8207547, a: 1}
+  completedColor: {r: 1, g: 0.9027058, b: 0, a: 1}
   startButton: {fileID: 1573153947}
   stopButton: {fileID: 1854717918}
   level: {fileID: 0}

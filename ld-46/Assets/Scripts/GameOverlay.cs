@@ -14,6 +14,8 @@ public class GameOverlay : Singleton<GameOverlay>
     
     public Color runningColor;
     public Color preparingColor;
+    public Color completedColor;
+    
     public UIButton startButton;
     public UIButton stopButton;
 
@@ -75,6 +77,9 @@ public class GameOverlay : Singleton<GameOverlay>
     {
         Time.timeScale = 0.05f;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        running = false;
+        gameState.text = "Completed !";
+        gameState.color = completedColor;
         
         StartCoroutine(Work());
         
@@ -88,8 +93,12 @@ public class GameOverlay : Singleton<GameOverlay>
 
     public void RetryLevel()
     {
-        // Maybe clear the tries ?
+        GameManager.Instance.KillPlayer();
         
+        // Maybe clear the tries ?
+        level.ClearTries();
+        
+        UpdateTries();
         ResumeGame();
     }
     

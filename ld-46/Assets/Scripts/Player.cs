@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 
         GameManager.Instance.OnPlayerDied.AddListener(Killed);
         GameManager.Instance.OnLevelRun.AddListener(Started);
+        GameManager.Instance.OnLevelCompleted.AddListener(Completed);
     }
 
     // Update is called once per frame
@@ -44,6 +45,18 @@ public class Player : MonoBehaviour
         m_rb.AddForce(Vector2.up * baseForce);
     }
 
+    void Completed()
+    {
+        StartCoroutine(Work());
+
+        IEnumerator Work()
+        {
+            yield return new WaitForSeconds(0.2f);
+            m_rb.isKinematic = true;
+            ResetPosition();
+        }
+    }
+    
     void Started()
     {
         m_rb.isKinematic = false;
@@ -53,6 +66,11 @@ public class Player : MonoBehaviour
         Debug.Log("Player killed");
         m_rb.isKinematic = true;
 
+        ResetPosition();
+    }
+
+    void ResetPosition()
+    {
         m_rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         m_rb.velocity = Vector3.zero;
         transform.position = m_startingPosition;
@@ -62,5 +80,5 @@ public class Player : MonoBehaviour
         basket.transform.rotation = basket_startingRotation;
 
         m_rb.constraints = RigidbodyConstraints2D.None;
-    }   
+    }
 }

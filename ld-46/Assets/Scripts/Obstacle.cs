@@ -9,6 +9,7 @@ public class Obstacle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (GameManager.Instance.State == GameState.Completed) return;
             GameManager.Instance.KillPlayer();
         }
     }
