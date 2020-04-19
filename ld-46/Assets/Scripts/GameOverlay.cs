@@ -91,6 +91,27 @@ public class GameOverlay : Singleton<GameOverlay>
         }
     }
 
+    public void SendLeaderboard()
+    {
+        var meta = new LeaderboardMeta()
+        {
+            Alias = PlayerPrefs.GetString("player_alias", "##UNDEFINED"),
+            Time = currentTime.ToString("N3"),
+            Tries = level.tries,
+            FanUsed = level.fans.Count,
+            TotalFan = level.availableFans,
+            Score = CalculateScore()
+        };
+        var boardName = level.levelName.Replace(" ", string.Empty).ToLower();
+        LeaderboardController.Instance.PostScore(meta, boardName);
+    }
+
+    public double CalculateScore()
+    {
+        // TODO
+        return 100;
+    }
+    
     public void RetryLevel()
     {
         GameManager.Instance.KillPlayer();
