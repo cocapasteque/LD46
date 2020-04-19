@@ -49,7 +49,14 @@ public class GameManager : Singleton<GameManager>
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(transform.root);
+        }
+        
         State = GameState.MainMenu;
 
         for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
