@@ -108,8 +108,8 @@ public class GameOverlay : Singleton<GameOverlay>
 
     public double CalculateScore()
     {
-        float score = level.baseScore + (Mathf.Clamp(level.baseTime - currentTime, 0, float.MaxValue) * level.timeHighscoreValue) + ((level.fans.Count - level.availableFans) * level.fanHighscoreValue);
-        score += (10000f - level.tries) / 10000f;
+        float score = level.baseScore + Mathf.Floor((Mathf.Clamp(level.baseTime - currentTime, 0, float.MaxValue) * level.timeHighscoreValue)) + ((level.availableFans - level.fans.Count) * level.fanHighscoreValue);
+        score += ((1000f - level.tries) / 1000f);
         Debug.Log("score: " + score);
         return score;
     }
@@ -117,10 +117,7 @@ public class GameOverlay : Singleton<GameOverlay>
     public void RetryLevel()
     {
         GameManager.Instance.KillPlayer();
-        
-        // Maybe clear the tries ?
-        level.ClearTries();
-        
+               
         UpdateTries();
         ResumeGame();
     }
