@@ -108,8 +108,10 @@ public class GameOverlay : Singleton<GameOverlay>
 
     public double CalculateScore()
     {
-        // TODO
-        return 100;
+        float score = level.baseScore + (Mathf.Clamp(level.baseTime - currentTime, 0, float.MaxValue) * level.timeHighscoreValue) + ((level.fans.Count - level.availableFans) * level.fanHighscoreValue);
+        score += (10000f - level.tries) / 10000f;
+        Debug.Log("score: " + score);
+        return score;
     }
     
     public void RetryLevel()

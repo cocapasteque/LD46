@@ -8,6 +8,10 @@ public class Level : MonoBehaviour
 {
     public string levelName;    
     public int availableFans = 5;
+    public float baseScore;
+    public float baseTime;
+    public float fanHighscoreValue;
+    public float timeHighscoreValue;
     public int tries;
 
     public List<FanSelector> fans = new List<FanSelector>();
