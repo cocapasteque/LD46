@@ -3873,7 +3873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.35122913, y: 0.039740745}
   m_AnchorMax: {x: 0.646, y: 0.7148519}
-  m_AnchoredPosition: {x: 0, y: -26}
+  m_AnchoredPosition: {x: 0, y: -25.99997}
   m_SizeDelta: {x: 609.3, y: -222}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &221178114
@@ -13057,7 +13057,7 @@ MonoBehaviour:
     SerializationNodes: []
   levelNames:
   - Tutorial
-  - Game
+  - Level 1
   - Level 2
   unlockedLevel: {fileID: 1279888898109943475, guid: 5b2b5de51b2cdb84f9de3f3a9a1a076d,
     type: 3}

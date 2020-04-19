@@ -34,6 +34,12 @@ public class Level : MonoBehaviour
         tries = PlayerPrefs.HasKey("Tries_" + levelName) ? PlayerPrefs.GetInt("Tries_" + levelName) : 1;      
     }
 
+    public void ClearTries()
+    {
+        PlayerPrefs.SetInt("Tries_" + levelName, 1);
+        tries =PlayerPrefs.HasKey("Tries_" + levelName) ? PlayerPrefs.GetInt("Tries_" + levelName) : 1;
+    }
+
     private void Update()
     {
         if (GameManager.Instance.State != GameState.Running)

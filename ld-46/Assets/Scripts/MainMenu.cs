@@ -57,9 +57,9 @@ public class MainMenu : SerializedMonoBehaviour
 
     private void CheckUnlockState()
     {
-        var pref = PlayerPrefs.GetString("unlocked_levels", "['Tutorial','Game']");
+        var pref = PlayerPrefs.GetString("unlocked_levels", "['Tutorial','Level 1']");
         string[] unlocked = JsonConvert.DeserializeObject<string[]>(pref);
-        if (unlocked == null) unlocked = new []{"Tutorial", "Game"};
+        if (unlocked == null) unlocked = new []{"Tutorial", "Level 1"};
         Debug.Log(string.Join(",", unlocked));
         foreach (var level in unlocked)
         {
@@ -81,7 +81,13 @@ public class MainMenu : SerializedMonoBehaviour
     public void ResetProgress()
     {
         Debug.Log("Reseting progress");
-        PlayerPrefs.SetString("unlocked_levels", "['Tutorial', 'Game']");
+        PlayerPrefs.SetString("unlocked_levels", "['Tutorial', 'Level 1']");
+
+        foreach (var level in levelNames)
+        {
+            PlayerPrefs.SetInt("Tries_" + level, 1);
+        }
+        
         foreach (var btn in levelBtns)
         {
             Destroy(btn);

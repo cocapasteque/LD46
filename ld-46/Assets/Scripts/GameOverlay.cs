@@ -31,6 +31,7 @@ public class GameOverlay : Singleton<GameOverlay>
 
     public GameObject overlay;
     public UIView pauseView;
+    public UIView completedView;
     
     private bool running = false;
     private float currentTime;
@@ -39,6 +40,8 @@ public class GameOverlay : Singleton<GameOverlay>
     {
         GameManager.Instance.OnLevelPrepare.AddListener(SetPrepare);
         GameManager.Instance.OnLevelRun.AddListener(SetRunning);
+        GameManager.Instance.OnLevelCompleted.AddListener(LevelCompleted);
+        
         DeselectFan();
         stopButton.gameObject.SetActive(false);        
     }
@@ -68,11 +71,37 @@ public class GameOverlay : Singleton<GameOverlay>
         pauseView.Show();   
     }
 
+    public void LevelCompleted()
+    {
+        Time.timeScale = 0.05f;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        
+        StartCoroutine(Work());
+        
+        IEnumerator Work()
+        {
+            yield return new WaitForSeconds(0.1f);
+            overlay.SetActive(true);
+            completedView.Show();
+        }
+    }
+
+    public void RetryLevel()
+    {
+        // Maybe clear the tries ?
+        
+        ResumeGame();
+    }
+    
     public void ResumeGame()
     {
         Time.timeScale = 1;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
         overlay.SetActive(false);
-        pauseView.Hide();
+        
+        if(pauseView.IsVisible) pauseView.Hide();
+        if(completedView.IsVisible) completedView.Hide();
     }
 
     public void StartGame()

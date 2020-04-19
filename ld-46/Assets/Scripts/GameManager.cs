@@ -36,7 +36,8 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent OnLevelRun;
     public UnityEvent OnLevelPrepare;
     public UnityEvent OnPlayerDied;
-
+    public UnityEvent OnLevelCompleted;
+    
     public Texture2D addFanIcon;
     public Texture2D noMoreFanIcon;
     
@@ -82,7 +83,8 @@ public class GameManager : Singleton<GameManager>
 
     public void ReachedFinishLine()
     {
-        State = GameState.Preparing;
+        OnLevelCompleted?.Invoke();
+        State = GameState.Completed;
     }
 
     public void LoadMainMenu()
@@ -103,5 +105,6 @@ public enum GameState
 {
     MainMenu,
     Preparing,
-    Running
+    Running,
+    Completed
 }
