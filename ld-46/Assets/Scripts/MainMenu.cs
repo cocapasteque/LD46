@@ -16,8 +16,12 @@ public class MainMenu : SerializedMonoBehaviour
     public GameObject lockedLevel;
     public Transform levelContainers;
 
+    public LevelSelection levelSelection;
+    
     private Dictionary<string, bool> levels;
     private List<GameObject> levelBtns;
+    
+    
     void Start()
     {
         InitializeLevels();
@@ -48,7 +52,8 @@ public class MainMenu : SerializedMonoBehaviour
             {
                 btn.GetComponent<UIButton>().OnClick.OnTrigger.Event.AddListener(() =>
                 {
-                    GameManager.Instance.LoadLevel(level.Key);
+                    var key = level.Key.Replace(" ", string.Empty).ToLower();
+                    levelSelection.LoadLeaderboard(key);
                 });
             }
             levelBtns.Add(btn);
