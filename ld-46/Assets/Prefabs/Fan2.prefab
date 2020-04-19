@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 954179d77e5b4fb41842e34e7032da57, type: 3}
   - {fileID: 21300000, guid: c112d44e080471b44b0d13c0765ea5fe, type: 3}
   - {fileID: 21300000, guid: 1f6fba565767a0e4a88eede91b6ac9a4, type: 3}
+  fanChangeTime: 0.01
   currentAngle: 0
 --- !u!61 &1958315107648642547
 BoxCollider2D:
