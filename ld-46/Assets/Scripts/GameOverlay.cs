@@ -85,7 +85,7 @@ public class GameOverlay : Singleton<GameOverlay>
         
         IEnumerator Work()
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
             overlay.SetActive(true);
             completedView.Show();
         }

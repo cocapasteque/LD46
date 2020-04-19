@@ -5,11 +5,20 @@ using UnityEngine;
 public class FinishLine : MonoBehaviour
 {
     public string unlockingLevel;
-
+    public GameObject effectPrefab;
+    public Transform[] effectOrigin;
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            foreach (var origin in effectOrigin)
+            {
+                var effect = Instantiate(effectPrefab, origin);
+                effect.transform.localPosition = Vector3.zero;
+                Destroy(effect, 5);
+            }
+            
             // Unlocking level
             var levelsString = PlayerPrefs.GetString("unlocked_levels", "['Tutorial','Level 1']");
             Debug.Log(levelsString);
