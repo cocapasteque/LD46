@@ -15,12 +15,16 @@ public class FanSelector : MonoBehaviour
 
     public List<Sprite> FanSprites;
 
+    public ParticleSystem Wind;
+
     public float fanChangeTime;
     public float currentAngle;
     private int currentSpriteIndex;
     private float currentSpriteTime;
+    private ParticleSystem.MainModule windMain;
     private void Start()
     {
+        windMain = Wind.main;
         currentSpriteIndex = 0;
         currentAngle = 0f;
     }
@@ -46,6 +50,17 @@ public class FanSelector : MonoBehaviour
             {
                 currentSpriteTime += Time.deltaTime;
             }
+
+            windMain.simulationSpeed = Fan.currentForce * 2.5f + 0.5f;
+
+            if (Wind.isStopped)
+            {
+                Wind.Play();
+            }
+        }
+        else
+        {
+            Wind.Stop();
         }
     }
 

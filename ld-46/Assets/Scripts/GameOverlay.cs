@@ -31,6 +31,8 @@ public class GameOverlay : Singleton<GameOverlay>
     public TextMeshProUGUI Fans;
     public TextMeshProUGUI RunTime;
 
+    public TextMeshProUGUI Score;
+
     public GameObject overlay;
     public UIView pauseView;
     public UIView completedView;
@@ -131,7 +133,7 @@ public class GameOverlay : Singleton<GameOverlay>
     {
         float score = level.baseScore + Mathf.Floor((Mathf.Clamp(level.baseTime - currentTime, 0, float.MaxValue) * level.timeHighscoreValue)) + ((level.availableFans - level.fans.Count) * level.fanHighscoreValue);
         score += ((1000f - level.tries) / 1000f);
-        Debug.Log("score: " + score);
+        Score.text = score.ToString("N0");
         return score;
     }
     
