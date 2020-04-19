@@ -2008,12 +2008,12 @@ PrefabInstance:
     - target: {fileID: 8455468685832135030, guid: 17582f1c97bbffe4a9fe0363469f4365,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03
+      value: -0.43
       objectReference: {fileID: 0}
     - target: {fileID: 8455468685832135030, guid: 17582f1c97bbffe4a9fe0363469f4365,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.95
+      value: -2.87
       objectReference: {fileID: 0}
     - target: {fileID: 8455468685832135030, guid: 17582f1c97bbffe4a9fe0363469f4365,
         type: 3}
@@ -3306,6 +3306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Level 1
   availableFans: 5
+  tries: 0
   fans: []
   isTutorial: 0
 --- !u!4 &780237971
