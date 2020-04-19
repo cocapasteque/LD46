@@ -2720,7 +2720,7 @@ MonoBehaviour:
   levelName: Level 1
   availableFans: 2
   baseScore: 500
-  baseTime: 5
+  baseTime: 10
   fanHighscoreValue: 500
   timeHighscoreValue: 300
   tries: 0

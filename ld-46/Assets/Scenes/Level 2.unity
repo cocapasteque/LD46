@@ -1052,10 +1052,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Level 2
   availableFans: 3
-  baseScore: 0
-  baseTime: 0
-  fanHighscoreValue: 0
-  timeHighscoreValue: 0
+  baseScore: 500
+  baseTime: 10
+  fanHighscoreValue: 500
+  timeHighscoreValue: 300
   tries: 0
   fans: []
   isTutorial: 0
