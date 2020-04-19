@@ -22276,12 +22276,12 @@ MonoBehaviour:
   StartRotation: {x: 0, y: 0, z: 0}
   StartScale: {x: 1, y: 1, z: 1}
   StartAlpha: 1
-  AllowMultipleClicks: 1
+  AllowMultipleClicks: 0
   ButtonCategory: Game Overlay
   ButtonName: Stop Button
   ClickMode: 0
   DeselectButtonAfterClick: 0
-  DisableButtonBetweenClicksInterval: 0.2
+  DisableButtonBetweenClicksInterval: 3
   DoubleClickRegisterInterval: 0.2
   InputData:
     EnableAlternateInputs: 1

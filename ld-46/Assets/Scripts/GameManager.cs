@@ -105,6 +105,7 @@ public class GameManager : Singleton<GameManager>
         StartCoroutine(Work());
         IEnumerator Work()
         {
+            GameOverlay.Instance.stopButton.DisableButton();
             OnBeforePlayerDied?.Invoke();
             yield return new WaitForSeconds(2);
             OnPlayerDied?.Invoke();
@@ -115,6 +116,7 @@ public class GameManager : Singleton<GameManager>
 
     public void ReachedFinishLine()
     {
+        GameOverlay.Instance.stopButton.DisableButton();
         OnLevelCompleted?.Invoke();
         State = GameState.Completed;
     }

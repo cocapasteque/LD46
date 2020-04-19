@@ -186,6 +186,7 @@ public class GameOverlay : Singleton<GameOverlay>
         gameState.color = runningColor;
         startButton.gameObject.SetActive(false);
         stopButton.gameObject.SetActive(true);
+        stopButton.EnableButton();
         running = true;
         StartCoroutine(Timer());
     }   
