@@ -16,7 +16,10 @@ public class MainMenu : SerializedMonoBehaviour
 
     public GameObject unlockedLevel;
     public GameObject lockedLevel;
-    public Transform levelContainers;
+    public List<Transform> levelContainers;
+    public int levelsPerContainer = 8;
+    public UIButton NextPageButton;
+    public UIButton PreviousPageButton;
 
     public LevelSelection levelSelection;
 
@@ -25,6 +28,7 @@ public class MainMenu : SerializedMonoBehaviour
 
     private Dictionary<string, bool> levels;
     private List<GameObject> levelBtns;
+    private int currentLevelPage = 0;
     
     
     void Start()
@@ -46,11 +50,20 @@ public class MainMenu : SerializedMonoBehaviour
 
     private void InstantiateLevelButtons()
     {
+        currentLevelPage = 0;
+        foreach(var container in levelContainers)
+        {
+            container.gameObject.SetActive(false);
+        }
+        levelContainers[0].gameObject.SetActive(true);
+        PreviousPageButton.DisableButton();
+
         levelBtns = new List<GameObject>();
+        int index = 0;
         foreach (var level in levels)
         {
             Debug.Log("Creating button for " + level.Key);
-            var btn = Instantiate(level.Value ? unlockedLevel : lockedLevel, levelContainers);
+            var btn = Instantiate(level.Value ? unlockedLevel : lockedLevel, levelContainers[index / levelsPerContainer]);
             btn.GetComponentInChildren<TMP_Text>().text = level.Value ? level.Key : "Locked";
 
             // If level unlocked, hook it to level load logic
@@ -65,6 +78,7 @@ public class MainMenu : SerializedMonoBehaviour
                 });
             }
             levelBtns.Add(btn);
+            index++;
         }
     }
 
@@ -123,5 +137,29 @@ public class MainMenu : SerializedMonoBehaviour
         float logValue = 20f * Mathf.Log10(normalizedValue);
         Mixer.SetFloat("MasterVolume", normalizedValue > 0 ? logValue : -80f);
         PlayerPrefs.SetFloat("volume", normalizedValue);
+    }
+
+    public void NextLevelPage()
+    {
+        levelContainers[currentLevelPage].gameObject.SetActive(false);
+        currentLevelPage++;
+        levelContainers[currentLevelPage].gameObject.SetActive(true);
+        if ((currentLevelPage + 1) >= levelContainers.Count)
+        {
+            NextPageButton.DisableButton();
+        }
+        PreviousPageButton.EnableButton();
+    }
+
+    public void PreviousLevelPage()
+    {
+        levelContainers[currentLevelPage].gameObject.SetActive(false);
+        currentLevelPage--;
+        levelContainers[currentLevelPage].gameObject.SetActive(true);
+        if (currentLevelPage <= 0)
+        {
+            PreviousPageButton.DisableButton();
+        }
+        NextPageButton.EnableButton();
     }
 }

@@ -46,7 +46,8 @@ public class GameManager : Singleton<GameManager>
     public int currentLevel;
     public GameObject fanPrefab;
     public float pressThreshold = 0.3f;
-    public List<string> scenesInBuild = new List<string>();  
+    public List<string> scenesInBuild = new List<string>();
+    private bool gettingKilled = false;
 
     void Awake()
     {
@@ -102,7 +103,11 @@ public class GameManager : Singleton<GameManager>
     }
     public void KillPlayer()
     {
-        StartCoroutine(Work());
+        if (!gettingKilled)
+        {
+            gettingKilled = true;
+            StartCoroutine(Work());
+        }
         IEnumerator Work()
         {
             GameOverlay.Instance.stopButton.DisableButton();
@@ -111,6 +116,7 @@ public class GameManager : Singleton<GameManager>
             OnPlayerDied?.Invoke();
             State = GameState.Preparing;
             GameOverlay.Instance.level.AddTry();
+            gettingKilled = false;
         }
     }
 
