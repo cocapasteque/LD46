@@ -6,8 +6,9 @@ using UnityEngine.EventSystems;
 
 public class Level : MonoBehaviour
 {
-    public string levelName;
+    public string levelName;    
     public int availableFans = 5;
+    public int tries;
 
     public List<FanSelector> fans = new List<FanSelector>();
 
@@ -20,15 +21,17 @@ public class Level : MonoBehaviour
     private TutorialManager tManager;
     private Camera mainCamera;
     private Vector2 dragOffset;
+    
 
     private void Start()
-    {
+    {     
         mainCamera = Camera.main;
         if (isTutorial)
         {
             tManager = FindObjectOfType<TutorialManager>();
             tManager.level = this;
         }
+        tries = PlayerPrefs.HasKey("Tries_" + levelName) ? PlayerPrefs.GetInt("Tries_" + levelName) : 1;      
     }
 
     private void Update()
@@ -39,7 +42,7 @@ public class Level : MonoBehaviour
             {
                 var hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0);
 
-                // check if we clicked a scene object (fan/player/sawblade) 
+                // check if we clicked a scene object (fan/player/saw blade) 
                 if (hit)
                 {
                     SceneObjectClicked(hit);
@@ -137,8 +140,8 @@ public class Level : MonoBehaviour
         if(!isTutorial) fan.Select();
         fan.level = this;
         selectedFan = fan;
-
-        return fan;
+        UpdateFanCount();
+        return fan;      
     }
 
     public void RemoveCurrentFan()
@@ -153,5 +156,18 @@ public class Level : MonoBehaviour
     {
         fans.Remove(fan);
         Destroy(fan.transform.parent.gameObject);
+        UpdateFanCount();
+    }
+
+    public void AddTry()
+    {
+        tries++;        
+        PlayerPrefs.SetInt("Tries_" + levelName, tries);
+        GameOverlay.Instance.UpdateTries();
+    }
+
+    private void UpdateFanCount()
+    {
+        GameOverlay.Instance.Fans.text = fans.Count() + "/" + availableFans;
     }
 }

@@ -77,6 +77,7 @@ public class GameManager : Singleton<GameManager>
     {
         OnPlayerDied?.Invoke();
         State = GameState.Preparing;
+        GameOverlay.Instance.level.AddTry();
     }
 
     public void ReachedFinishLine()

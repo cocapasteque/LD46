@@ -24,12 +24,20 @@ public class GameOverlay : Singleton<GameOverlay>
     public TextMeshProUGUI ForcePercentage;
     public Slider RotationSlider;
     public TextMeshProUGUI RotationAngle;
+
+    public TextMeshProUGUI Tries;
+    public TextMeshProUGUI Fans;
+    public TextMeshProUGUI RunTime;
+
+    private bool running = false;
+    private float currentTime;
     
     private void Awake()
     {
         GameManager.Instance.OnLevelPrepare.AddListener(SetPrepare);
         GameManager.Instance.OnLevelRun.AddListener(SetRunning);
         DeselectFan();
+        stopButton.gameObject.SetActive(false);        
     }
 
     private void Update()
@@ -53,20 +61,22 @@ public class GameOverlay : Singleton<GameOverlay>
     {
         gameState.text = "Preparing";
         gameState.color = preparingColor;
-        //startButton.EnableButton();
         startButton.gameObject.SetActive(true);
         stopButton.gameObject.SetActive(false);
         
         level = GameObject.FindObjectOfType<Level>();
         levelName.text = level.levelName;
+        running = false;
+        UpdateTries();
     }
     void SetRunning()
     {
         gameState.text = "Running";
         gameState.color = runningColor;
-        //startButton.DisableButton();
         startButton.gameObject.SetActive(false);
         stopButton.gameObject.SetActive(true);
+        running = true;
+        StartCoroutine(Timer());
     }   
     
     public void SelectFan()
@@ -83,5 +93,21 @@ public class GameOverlay : Singleton<GameOverlay>
     {
         level.RemoveCurrentFan();
         FanInfo.SetActive(false);
+    }
+
+    private IEnumerator Timer()
+    {
+        currentTime = 0f;
+        while(running)
+        {
+            yield return null;
+            currentTime += Time.deltaTime;
+            RunTime.text = currentTime.ToString("N3");
+        }
+    }
+
+    public void UpdateTries()
+    {
+        Tries.text = level.tries.ToString();
     }
 }
