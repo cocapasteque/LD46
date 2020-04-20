@@ -43,6 +43,8 @@ public class GameManager : Singleton<GameManager>
     public Texture2D addFanIcon;
     public Texture2D noMoreFanIcon;
 
+    public LayerMask FanLayerMask;
+
     public int currentLevel;
     public GameObject fanPrefab;
     public float pressThreshold = 0.3f;

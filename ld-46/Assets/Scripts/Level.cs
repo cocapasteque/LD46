@@ -14,11 +14,13 @@ public class Level : MonoBehaviour
     public float timeHighscoreValue;
     public int tries;
 
+    
+
     public List<FanSelector> fans = new List<FanSelector>();
 
     private float currentPressTime = 0f;
 
-    private FanSelector selectedFan;
+    public FanSelector selectedFan;
     private FanSelector grabbedFan;
 
     public bool isTutorial = false;
@@ -51,7 +53,7 @@ public class Level : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                var hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0);
+                var hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0, GameManager.Instance.FanLayerMask);
 
                 // check if we clicked a scene object (fan/player/saw blade) 
                 if (hit)
@@ -80,7 +82,7 @@ public class Level : MonoBehaviour
                 }
                 else
                 {
-                    var hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0);
+                    var hit = Physics2D.Raycast(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0, GameManager.Instance.FanLayerMask);
                     // check if we clicked a scene object (fan/player/saw blade) 
                     if (hit)
                     {
@@ -135,6 +137,7 @@ public class Level : MonoBehaviour
         if (fan != null)
         {
             if (!fan.selected) fan.Select();
+            selectedFan = fan;
             dragOffset = (Vector2) fan.transform.parent.position - hitPosition;
             grabbedFan = fan;
         }
