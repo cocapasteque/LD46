@@ -11,16 +11,25 @@ public class AliasInput : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        yield return new WaitForSeconds(2);
-        alias = PlayerPrefs.GetString("player_alias", string.Empty);
-        Debug.Log(alias);
-        if (!string.IsNullOrEmpty(alias))
+        if (GameManager.Instance.gameFinished)
         {
-            GameEventMessage.SendEvent("AliasExists");
+            yield return null;
+            GameEventMessage.SendEvent("GameFinished");
+            GameManager.Instance.gameFinished = false;
         }
         else
         {
-            GameEventMessage.SendEvent("AliasNotExists");
+            yield return new WaitForSeconds(2);
+            alias = PlayerPrefs.GetString("player_alias", string.Empty);
+            Debug.Log(alias);
+            if (!string.IsNullOrEmpty(alias))
+            {
+                GameEventMessage.SendEvent("AliasExists");
+            }
+            else
+            {
+                GameEventMessage.SendEvent("AliasNotExists");
+            }
         }
     }
 

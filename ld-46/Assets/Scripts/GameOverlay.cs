@@ -38,7 +38,8 @@ public class GameOverlay : Singleton<GameOverlay>
     public UIView completedView;
 
     public UIButton nextLevelButton;
-    
+    public UIButton creditsButton;
+
     private bool running = false;
     private float currentTime;
 
@@ -102,15 +103,22 @@ public class GameOverlay : Singleton<GameOverlay>
         int nextLevel = GameManager.Instance.currentLevel + 1;
         if (GameManager.Instance.scenesInBuild.Contains("Level " + nextLevel))
         {
-            nextLevelButton.EnableButton();
+            nextLevelButton.gameObject.SetActive(true);
+            creditsButton.gameObject.SetActive(false);
             nextLevelButton.OnClick.OnTrigger.Event.AddListener(() =>
             {
                 GameManager.Instance.LoadLevel("Level " + nextLevel);
             });
         }
         else
-        {
-            nextLevelButton.DisableButton();
+        {           
+            nextLevelButton.gameObject.SetActive(false);
+            creditsButton.gameObject.SetActive(true);
+            creditsButton.OnClick.OnTrigger.Event.AddListener(() =>
+            {
+                GameManager.Instance.gameFinished = true;
+                GoToMainMenu();
+            });
         }
     }
 

@@ -51,6 +51,8 @@ public class GameManager : Singleton<GameManager>
     public List<string> scenesInBuild = new List<string>();
     private bool gettingKilled = false;
 
+    public bool gameFinished;
+
     void Awake()
     {
         if (Instance != null && Instance != this) {
