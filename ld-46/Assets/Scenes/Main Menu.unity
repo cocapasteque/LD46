@@ -15849,6 +15849,8 @@ MonoBehaviour:
   - Level 6
   - Level 7
   - Level 8
+  - Level 9
+  - Level 10
   unlockedLevel: {fileID: 1279888898109943475, guid: 5b2b5de51b2cdb84f9de3f3a9a1a076d,
     type: 3}
   lockedLevel: {fileID: 1663963694891896565, guid: 3b8dc7d64009c544994790b465a42a46,
