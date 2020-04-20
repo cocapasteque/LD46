@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using Cinemachine;
+using DG.Tweening;
 using UnityEngine;
+
 
 public class CameraController : MonoBehaviour
 {
@@ -56,10 +58,11 @@ public class CameraController : MonoBehaviour
 
         IEnumerator Zoom()
         {
+            yield return null;
+            transform.DOLocalMove(zoomPos, zoomTime * Time.timeScale);
             while (Time.unscaledTime - startTime <= zoomTime)
-            {
+            {         
                 mainCam.orthographicSize = Mathf.Lerp(startSize, zoomSize, (Time.unscaledTime - startTime) / zoomTime);
-                mainCam.transform.localPosition = Vector3.Lerp(startPos, zoomPos, (Time.unscaledTime - startTime) / zoomTime);
                 yield return null;
             }
         }
