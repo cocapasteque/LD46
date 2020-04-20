@@ -343,3 +343,6 @@ MonoBehaviour:
   shakeDuration: 0.2
   amplitude: 0.2
   frequency: 5
+  zoomSize: 1
+  zoomTime: 2
+  zoomPos: {x: 0, y: 0, z: -10}

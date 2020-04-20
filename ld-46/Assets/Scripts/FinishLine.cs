@@ -18,6 +18,7 @@ public class FinishLine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Camera.main.GetComponent<CameraController>().ZoomOnPlayer();
         if (other.CompareTag("Player"))
         {
             audioSource.Stop();

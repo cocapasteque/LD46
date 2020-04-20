@@ -52,14 +52,7 @@ public class Player : MonoBehaviour
 
     void Completed()
     {
-        StartCoroutine(Work());
 
-        IEnumerator Work()
-        {
-            yield return new WaitForSeconds(0.2f);
-            m_rb.isKinematic = true;
-            ResetPosition();
-        }
     }
 
     void Started()
@@ -70,7 +63,6 @@ public class Player : MonoBehaviour
     void Killed()
     {
         Debug.Log("Player killed");
-        m_rb.isKinematic = true;
         GetComponent<CircleCollider2D>().enabled = true;
         graphics.SetActive(true);
         ResetPosition();
@@ -87,12 +79,11 @@ public class Player : MonoBehaviour
             Destroy(o, 5);
         }
 
-        m_rb.isKinematic = true;
         ResetPosition();
     }
 
     public void ResetPosition()
-    {
+    {    
         m_rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         m_rb.velocity = Vector3.zero;
         transform.position = m_startingPosition;
@@ -102,5 +93,6 @@ public class Player : MonoBehaviour
         basket.transform.rotation = basket_startingRotation;
 
         m_rb.constraints = RigidbodyConstraints2D.None;
+        m_rb.isKinematic = true;
     }
 }
