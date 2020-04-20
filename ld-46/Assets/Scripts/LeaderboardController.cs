@@ -76,4 +76,6 @@ public class LeaderboardMeta
     [JsonProperty("time")] public string Time { get; set; }
     [JsonProperty("fanUsed")] public int FanUsed { get; set; }
     [JsonProperty("totalFan")] public int TotalFan { get; set; }
+    
+    public int Index { get; set; }
 }
