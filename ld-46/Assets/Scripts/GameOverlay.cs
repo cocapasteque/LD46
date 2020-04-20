@@ -147,6 +147,7 @@ public class GameOverlay : Singleton<GameOverlay>
     
     public void RetryLevel()
     {
+        Camera.main.GetComponent<CameraController>().ResetZoom();
         FindObjectOfType<Player>().ResetPosition();
         GameManager.Instance.State = GameState.Preparing;
         level.RemoveAllFans();

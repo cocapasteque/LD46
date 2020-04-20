@@ -1311,6 +1311,9 @@ MonoBehaviour:
   - Category: Main Menu
     InstantAction: 0
     Name: C4
+  - Category: Main Menu
+    InstantAction: 0
+    Name: C5
   m_onEnterHideViews: []
   m_onExitShowViews: []
   m_onExitHideViews:
@@ -1329,6 +1332,9 @@ MonoBehaviour:
   - Category: Main Menu
     InstantAction: 0
     Name: C4
+  - Category: Main Menu
+    InstantAction: 0
+    Name: C5
   - Category: Main Menu
     InstantAction: 0
     Name: CreditsAudio
