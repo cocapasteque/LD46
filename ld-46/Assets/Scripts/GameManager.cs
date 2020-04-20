@@ -109,20 +109,23 @@ public class GameManager : Singleton<GameManager>
     }
     public void KillPlayer()
     {
-        if (!gettingKilled)
+        if (State != GameState.Completed)
         {
-            gettingKilled = true;
-            StartCoroutine(Work());
-        }
-        IEnumerator Work()
-        {
-            GameOverlay.Instance.stopButton.DisableButton();
-            OnBeforePlayerDied?.Invoke();
-            yield return new WaitForSeconds(2);
-            OnPlayerDied?.Invoke();
-            State = GameState.Preparing;
-            GameOverlay.Instance.level.AddTry();
-            gettingKilled = false;
+            if (!gettingKilled)
+            {
+                gettingKilled = true;
+                StartCoroutine(Work());
+            }
+            IEnumerator Work()
+            {
+                GameOverlay.Instance.stopButton.DisableButton();
+                OnBeforePlayerDied?.Invoke();
+                yield return new WaitForSeconds(2);
+                OnPlayerDied?.Invoke();
+                State = GameState.Preparing;
+                GameOverlay.Instance.level.AddTry();
+                gettingKilled = false;
+            }
         }
     }
 
