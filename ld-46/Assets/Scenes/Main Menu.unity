@@ -3934,7 +3934,7 @@ MonoBehaviour:
   AutoHideAfterShowDelay: 3
   AutoSelectButtonAfterShow: 0
   BehaviorAtStart: 1
-  CustomStartAnchoredPosition: {x: 0, y: -26, z: 0}
+  CustomStartAnchoredPosition: {x: -3, y: 381, z: 0}
   DeselectAnyButtonSelectedOnHide: 0
   DeselectAnyButtonSelectedOnShow: 0
   DisableCanvasWhenHidden: 1
@@ -8678,7 +8678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &367806587
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -15851,6 +15851,8 @@ MonoBehaviour:
   - Level 8
   - Level 9
   - Level 10
+  - Level 11
+  - Level 12
   unlockedLevel: {fileID: 1279888898109943475, guid: 5b2b5de51b2cdb84f9de3f3a9a1a076d,
     type: 3}
   lockedLevel: {fileID: 1663963694891896565, guid: 3b8dc7d64009c544994790b465a42a46,
@@ -16135,7 +16137,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897608243915562427}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
@@ -43386,7 +43388,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897608243915562427}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9bc642a73174f7990f3513dd73d8864, type: 3}
   m_Name: 
