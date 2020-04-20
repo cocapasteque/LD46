@@ -235,7 +235,8 @@ public class GameOverlay : Singleton<GameOverlay>
 
     public void GoToMainMenu()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
         GameManager.Instance.LoadMainMenu();
     }
 }

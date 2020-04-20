@@ -75,6 +75,8 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadLevel(string levelName)
     {
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
         if (levelName.StartsWith("Level"))
         {
             currentLevel = int.Parse(levelName.Split(' ')[1]);
