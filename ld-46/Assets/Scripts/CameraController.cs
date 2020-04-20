@@ -22,6 +22,7 @@ public class CameraController : MonoBehaviour
         IEnumerator DoWork()
         {
             var origin = transform.localPosition;
+            var rotation = transform.localRotation;
             noise.m_AmplitudeGain = amplitude;
             noise.m_FrequencyGain = frequency;
             yield return new WaitForSeconds(shakeDuration);
@@ -29,6 +30,7 @@ public class CameraController : MonoBehaviour
             noise.m_FrequencyGain = 0;
             yield return new WaitForSeconds(0.01f);
             transform.localPosition = origin;
+            transform.localRotation = rotation;
         }
     }
 }
