@@ -9,10 +9,18 @@ public class LeaderButton : MonoBehaviour
     
     public void SetText(LeaderboardMeta entry, bool setIndex = false)
     {
-        alias.text = $"{entry.Alias} - {entry.Score}";
-        meta.text =
-            $"Time: {entry.Time} - Tries: {entry.Tries}";
-
+        if (entry.Score == -1)
+        {
+            alias.text = "-";
+            meta.text = "-";
+        }
+        else
+        {
+            alias.text = $"{entry.Alias} - {entry.Score:N0}";
+            meta.text =
+                $"Time: {entry.Time} - Tries: {entry.Tries}";
+        }
+        
         if (setIndex)
         {
             if (entry.Index == 0)

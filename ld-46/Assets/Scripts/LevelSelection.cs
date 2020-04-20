@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,46 +7,62 @@ using UnityEngine.UI;
 public class LevelSelection : MonoBehaviour
 {
     public GameObject leadButtons;
+    public GameObject loadingPanel;
+    public GameObject selectPanel;
+    
     public List<LeaderButton> btnList;
     public LeaderButton personalBest;
-    
+
     public string selectedLevel = string.Empty;
     public GameObject playButton;
-    
+
     public void LoadLeaderboard(string levelName)
     {
-        LeaderboardController.Instance.FetchLeaderboard(levelName).Then(response =>
+        selectPanel.SetActive(false);
+        loadingPanel.SetActive(true);
+        leadButtons.SetActive(false);
+
+        StartCoroutine(Work());
+
+        IEnumerator Work()
         {
-            var entries = JsonConvert.DeserializeObject<LeaderboardEntry[]>(response.Text);
-            var index = 0;
-            var perso = FindPersonalBest(entries);
-            
-            foreach (var btn in btnList)
+            yield return new WaitForSeconds(0.2f);
+            LeaderboardController.Instance.FetchLeaderboard(levelName).Then(response =>
             {
-                if (index >= entries.Length)
+                var entries = JsonConvert.DeserializeObject<LeaderboardEntry[]>(response.Text);
+                var index = 0;
+                var perso = FindPersonalBest(entries);
+
+                foreach (var btn in btnList)
                 {
-                    var meta = new LeaderboardMeta(){Alias = "-", FanUsed = -1, Score = -1, Time = "-", TotalFan = -1, Tries = -1};
-                    btn.SetText(meta);
+                    if (index >= entries.Length)
+                    {
+                        var meta = new LeaderboardMeta()
+                            {Alias = "-", FanUsed = -1, Score = -1, Time = "-", TotalFan = -1, Tries = -1};
+                        btn.SetText(meta);
+                    }
+                    else
+                    {
+                        var meta = JsonConvert.DeserializeObject<LeaderboardMeta>(entries[index++].Metadata);
+                        btn.SetText(meta);
+                    }
+                }
+
+                if (perso != null)
+                {
+                    personalBest.SetText(perso, true);
                 }
                 else
                 {
-                    var meta = JsonConvert.DeserializeObject<LeaderboardMeta>(entries[index++].Metadata);
-                    btn.SetText(meta);
+                    var meta = new LeaderboardMeta()
+                        {Alias = "-", FanUsed = -1, Score = -1, Time = "-", TotalFan = -1, Tries = -1};
+                    personalBest.SetText(meta, true);
                 }
-            }
 
-            if (perso != null)
-            {
-                personalBest.SetText(perso, true);
-            }
-            else
-            {
-                var meta = new LeaderboardMeta(){Alias = "-", FanUsed = -1, Score = -1, Time = "-", TotalFan = -1, Tries = -1};
-                personalBest.SetText(meta, true);
-            }
-            
-            leadButtons.SetActive(true);
-        });
+                leadButtons.SetActive(true);
+                loadingPanel.SetActive(false);
+            });
+        }
     }
 
     public LeaderboardMeta FindPersonalBest(LeaderboardEntry[] entries)
@@ -68,7 +85,7 @@ public class LevelSelection : MonoBehaviour
 
         return null;
     }
-    
+
     public void PlaySelectedLevel()
     {
         GameManager.Instance.LoadLevel(selectedLevel);
