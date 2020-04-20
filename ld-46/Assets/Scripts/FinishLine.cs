@@ -7,11 +7,23 @@ public class FinishLine : MonoBehaviour
     public string unlockingLevel;
     public GameObject effectPrefab;
     public Transform[] effectOrigin;
+    public AudioClip FinishClip;
+
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            audioSource.Stop();
+            audioSource.clip = FinishClip;
+            audioSource.loop = false;
+            audioSource.Play();
             foreach (var origin in effectOrigin)
             {
                 var effect = Instantiate(effectPrefab, origin);

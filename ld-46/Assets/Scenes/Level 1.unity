@@ -2725,6 +2725,7 @@ MonoBehaviour:
   timeHighscoreValue: 300
   tries: 0
   fans: []
+  selectedFan: {fileID: 0}
   isTutorial: 0
 --- !u!4 &780237971
 Transform:

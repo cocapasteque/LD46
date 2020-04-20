@@ -3475,6 +3475,7 @@ MonoBehaviour:
   timeHighscoreValue: 300
   tries: 0
   fans: []
+  selectedFan: {fileID: 0}
   isTutorial: 0
 --- !u!4 &780237971
 Transform:
@@ -8787,5 +8788,10 @@ PrefabInstance:
       propertyPath: unlockingLevel
       value: Level 13
       objectReference: {fileID: 0}
+    - target: {fileID: 7297968487029506639, guid: f3b167109858d8c409632eead1060282,
+        type: 3}
+      propertyPath: FinishClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5364486249147a84d93b3c606991d551, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3b167109858d8c409632eead1060282, type: 3}
