@@ -1253,6 +1253,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6771534205329960750, guid: f3b167109858d8c409632eead1060282,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ded38e66647a4b9498356f1530197f36, type: 3}
     - target: {fileID: 7297968487029506625, guid: f3b167109858d8c409632eead1060282,
         type: 3}
       propertyPath: m_Name
@@ -6362,6 +6367,7 @@ MonoBehaviour:
   timeHighscoreValue: 300
   tries: 0
   fans: []
+  selectedFan: {fileID: 0}
   isTutorial: 1
 --- !u!4 &1157788893
 Transform:
