@@ -10,10 +10,20 @@ public class FinishLine : MonoBehaviour
     public AudioClip FinishClip;
 
     private AudioSource audioSource;
+    private AudioClip originalClip;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        originalClip = audioSource.clip;
+    }
+
+    public void PlayOriginalClip()
+    {
+        audioSource.Stop();
+        audioSource.clip = originalClip;
+        audioSource.loop = true;
+        audioSource.Play();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -21,6 +31,7 @@ public class FinishLine : MonoBehaviour
         Camera.main.GetComponent<CameraController>().ZoomOnPlayer();
         if (other.CompareTag("Player"))
         {
+            other.enabled = false;
             audioSource.Stop();
             audioSource.clip = FinishClip;
             audioSource.loop = false;

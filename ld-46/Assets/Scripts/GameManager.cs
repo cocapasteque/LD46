@@ -99,7 +99,7 @@ public class GameManager : Singleton<GameManager>
             yield return null;
             yield return null;
 
-            State = GameState.Preparing;
+            //State = GameState.Preparing;
         }
     }
     
@@ -118,12 +118,16 @@ public class GameManager : Singleton<GameManager>
             }
             IEnumerator Work()
             {
-                GameOverlay.Instance.stopButton.DisableButton();
-                OnBeforePlayerDied?.Invoke();
-                yield return new WaitForSeconds(2);
-                OnPlayerDied?.Invoke();
-                State = GameState.Preparing;
-                GameOverlay.Instance.level.AddTry();
+                yield return null;
+                if (State != GameState.Completed)
+                {
+                    GameOverlay.Instance.stopButton.DisableButton();
+                    OnBeforePlayerDied?.Invoke();
+                    yield return new WaitForSeconds(2);
+                    OnPlayerDied?.Invoke();
+                    State = GameState.Preparing;
+                    GameOverlay.Instance.level.AddTry();
+                }
                 gettingKilled = false;
             }
         }

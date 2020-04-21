@@ -802,12 +802,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 58113044}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &85849766 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7297968487029506638, guid: f3b167109858d8c409632eead1060282,
-    type: 3}
-  m_PrefabInstance: {fileID: 193642288}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &111258451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8460,10 +8454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -9454,9 +9448,9 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - title: Your player
-    content: This is your hot air balloon, you cannot control it directly.
-    origin: {fileID: 166289632}
-    offset: {x: 500, y: 0, z: 0}
+    content: On the left is your hot air balloon, you cannot control it directly.
+    origin: {fileID: 0}
+    offset: {x: 0, y: 0, z: 0}
     displayNextButton: 1
     waitForEvent: 
     onStepEnded:
@@ -9516,8 +9510,8 @@ MonoBehaviour:
   - title: Completing a level
     content: Now try to reach the finish line without poping your balloon on the
       saw blades.
-    origin: {fileID: 85849766}
-    offset: {x: -500, y: 0, z: 0}
+    origin: {fileID: 0}
+    offset: {x: 0, y: 0, z: 0}
     displayNextButton: 1
     waitForEvent: 
     onStepEnded:

@@ -94,5 +94,6 @@ public class Player : MonoBehaviour
 
         m_rb.constraints = RigidbodyConstraints2D.None;
         m_rb.isKinematic = true;
+        GetComponent<Collider2D>().enabled = true;
     }
 }

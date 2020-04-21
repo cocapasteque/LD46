@@ -50,7 +50,8 @@ public class GameOverlay : Singleton<GameOverlay>
         GameManager.Instance.OnLevelCompleted.AddListener(LevelCompleted);
         
         DeselectFan();
-        stopButton.gameObject.SetActive(false);        
+        stopButton.gameObject.SetActive(false);
+        GameManager.Instance.State = GameState.Preparing;
     }
 
     private void Update()
@@ -149,6 +150,7 @@ public class GameOverlay : Singleton<GameOverlay>
     {
         Camera.main.GetComponent<CameraController>().ResetZoom();
         FindObjectOfType<Player>().ResetPosition();
+        FindObjectOfType<FinishLine>().PlayOriginalClip();
         GameManager.Instance.State = GameState.Preparing;
         level.RemoveAllFans();
         UpdateTries();
